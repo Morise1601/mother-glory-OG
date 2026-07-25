@@ -24,17 +24,17 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: "Mother Glory | Empowering Minds & Shaping Bright Futures",
+  title: "Mother Glory | NEET Coaching Center in Karaikal & Puducherry",
   description:
-    "Mother Glory is a premier educational institution dedicated to academic excellence, STEM innovation, robotics, athletics, and holistic student development.",
+    "Best NEET Coaching in Karaikal & Puducherry | Mother Glory",
   keywords: [
     "Mother Glory",
-    "Mother Glory School",
-    "Best School STEM Education",
-    "Robotics School Lab",
-    "Interactive Gallery Slider",
-    "Holistic School Admissions",
-    "Quality Education Academy",
+    "Mother Glory NEET Coaching center",
+    "Coaching Center",
+    "Coaching Centre in pondicherry",
+    "Best NEET Coaching in Karaikal",
+    "NEET Coaching in Tamil Nadu",
+    "NEET Coaching in Puducherry",
   ],
   authors: [{ name: "Mother Glory Institutions" }],
   creator: "Mother Glory",
@@ -44,9 +44,9 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   openGraph: {
-    title: "Mother Glory | Premier Educational Institution",
+    title: "Mother Glory | NEET Coaching Centre",
     description:
-      "Explore Mother Glory's state-of-the-art campus, smart classrooms, robotics labs, and vibrant student gallery.",
+      "Best NEET Coaching in Karaikal & Puducherry | Mother Glory",
     url: "https://motherglory.edu",
     siteName: "Mother Glory",
     images: [
@@ -62,9 +62,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Mother Glory | Empowering Minds & Shaping Bright Futures",
+    title: "Mother Glory | NEET Coaching Centre",
     description:
-      "Mother Glory provides world-class education, robotics labs, multi-sport facilities, and holistic character building.",
+      "Best NEET Coaching in Karaikal & Puducherry | Mother Glory",
     images: ["/images/gallery/gallery-1.png"],
   },
   robots: {
@@ -93,7 +93,7 @@ export default function RootLayout({
     logo: "https://motherglory.edu/images/Logo%20bg%20removed.png",
     image: "https://motherglory.edu/images/gallery/gallery-1.png",
     description:
-      "Mother Glory is a premier educational institution providing STEM, robotics, athletics, and holistic character education.",
+      "Best NEET Coaching in Karaikal & Puducherry | Mother Glory",
     address: {
       "@type": "PostalAddress",
       streetAddress: "Main Knowledge Hub Road, Sector 12",
