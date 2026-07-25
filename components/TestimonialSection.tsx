@@ -2,21 +2,21 @@ import { Star, Quote } from "lucide-react";
 
 const testimonials = [
   {
-    name: "Dr. Rajesh Sharma",
-    role: "Parent of Grade 9 Student",
-    content: "Mother Glory has provided an exceptionally nurturing environment for my daughter. The balance between STEM learning and character building is outstanding.",
+    name: "Ummal Bajiriya",
+    role: "",
+    content: "Excellent coaching center of karaikal.Best teaching staff , book materials, model question paper availables....",
+    rating: 4,
+  },
+  {
+    name: "Janaranjani",
+    role: "",
+    content: "I'm Neet aspirant from mother glory Karaikal, Here coaching gives efficient learning and giving hopes to crack Neet.",
     rating: 5,
   },
   {
-    name: "Priya Kapoor",
-    role: "Alumni (Batch of 2022) - Software Engineer",
-    content: "The robotics lab and guidance from teachers at Mother Glory gave me the confidence to pursue computer engineering at a top university.",
-    rating: 5,
-  },
-  {
-    name: "Anand & Sunita Verma",
-    role: "Parents of Grade 4 & 7 Students",
-    content: "What impressed us most is the individual attention each child receives. The school facilities, safety, and leadership activities are world-class.",
+    name: "Simi",
+    role: "",
+    content: "I’m a NEET aspirant from Mother Glory Karaikal, Classes were amazing. Feeling confident about cracking NEET.",
     rating: 5,
   },
 ];
@@ -25,7 +25,7 @@ export default function TestimonialSection() {
   return (
     <section id="testimonials" className="py-24 relative overflow-hidden bg-slate-50/60 dark:bg-slate-950/60">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
+
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-lg bg-[#122452] text-white text-xs font-normal uppercase tracking-wider border border-[#122452]">

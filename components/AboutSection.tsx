@@ -36,7 +36,7 @@ export default function AboutSection() {
   return (
     <section id="about" className="py-20 sm:py-24 relative overflow-hidden bg-slate-50 dark:bg-slate-950">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-16">
-        
+
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto space-y-4">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-lg bg-[#122452] text-white text-xs font-normal uppercase tracking-wider border border-[#122452]">
@@ -76,11 +76,8 @@ export default function AboutSection() {
         {/* Why Families Choose Mother Glory Highlights Card - Fixed High Contrast #122452 Background */}
         <div className="rounded-lg p-8 sm:p-12 bg-[#122452] text-white shadow-2xl border border-[#122452] relative overflow-hidden">
           <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-            
+
             <div className="lg:col-span-6 space-y-4">
-              <span className="px-3.5 py-1 rounded-lg bg-white/10 text-white text-xs font-normal uppercase tracking-wider border border-white/20">
-                Core Distinction
-              </span>
               <h3 className="text-2xl sm:text-3xl font-sora font-semibold text-white">
                 Why Families Choose Mother Glory
               </h3>
