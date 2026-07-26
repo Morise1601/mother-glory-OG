@@ -12,67 +12,32 @@ import {
   Play,
   Pause,
   Sparkles,
+  Trophy,
 } from "lucide-react";
 
 interface GalleryItem {
   id: string;
   src: string;
-  title: string;
-  category: "Classrooms" | "Science & Labs" | "Library" | "Seminars" | "Campus";
-  description: string;
 }
 
 const galleryData: GalleryItem[] = [
-  {
-    id: "g1",
-    src: "/images/gallery/gallery-1.png",
-    title: "Interactive NEET Coaching Classroom",
-    category: "Classrooms",
-    description: "Sunlit ergonomic spaces integrated with interactive touch displays for medical entrance lectures.",
-  },
-  {
-    id: "g2",
-    src: "/images/gallery/gallery-2.png",
-    title: "NEET Study & Reference Library",
-    category: "Library",
-    description: "Serene reading hubs with extensive physical and digital NCERT & NEET entrance question archives.",
-  },
-  {
-    id: "g3",
-    src: "/images/gallery/gallery-3.png",
-    title: "Advanced Biology & Chemistry Lab",
-    category: "Science & Labs",
-    description: "Hands-on medical science experiments, 3D anatomical models, and chemistry mechanisms.",
-  },
-  {
-    id: "g4",
-    src: "/images/gallery/gallery-4.png",
-    title: "Motivational Seminar & Examination Hall",
-    category: "Seminars",
-    description: "Dedicated hall for NEET mock examinations, strategy sessions, and rank award ceremonies.",
-  },
-  {
-    id: "g5",
-    src: "/images/gallery/gallery-5.png",
-    title: "Puducherry & Karaikal Campus",
-    category: "Campus",
-    description: "Inspiring campus environment designed for focused study, peace of mind, and academic success.",
-  },
+  { id: "g1", src: "/images/achievements/1.webp" },
+  { id: "g2", src: "/images/achievements/2.webp" },
+  { id: "g3", src: "/images/achievements/3.webp" },
+  { id: "g4", src: "/images/achievements/4.webp" },
+  { id: "g5", src: "/images/achievements/5.webp" },
+  { id: "g6", src: "/images/achievements/6.webp" },
+  { id: "g7", src: "/images/achievements/7.webp" },
+  { id: "g8", src: "/images/achievements/8.webp" },
+  { id: "g9", src: "/images/achievements/9.webp" },
 ];
 
-const categories = ["All", "Classrooms", "Science & Labs", "Library", "Seminars", "Campus"] as const;
-
 export default function GallerySection() {
-  const [selectedCategory, setSelectedCategory] = useState<string>("All");
   const [activeSlideIndex, setActiveSlideIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(true);
   const [lightboxImage, setLightboxImage] = useState<GalleryItem | null>(null);
 
-  const filteredItems = selectedCategory === "All"
-    ? galleryData
-    : galleryData.filter((item) => item.category === selectedCategory);
-
-  const autoplayPlugin = Autoplay({ delay: 4000, stopOnInteraction: false });
+  const autoplayPlugin = Autoplay({ delay: 3500, stopOnInteraction: false });
 
   const [emblaRef, emblaApi] = useEmblaCarousel(
     { loop: true, align: "center", skipSnaps: false },
@@ -120,194 +85,197 @@ export default function GallerySection() {
     };
   }, [emblaApi]);
 
+  // Keyboard navigation for Lightbox Full View
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (!lightboxImage) return;
+      const currentIndex = galleryData.findIndex((img) => img.id === lightboxImage.id);
+      if (e.key === "Escape") {
+        setLightboxImage(null);
+      } else if (e.key === "ArrowRight") {
+        const nextIndex = (currentIndex + 1) % galleryData.length;
+        setLightboxImage(galleryData[nextIndex]);
+      } else if (e.key === "ArrowLeft") {
+        const prevIndex = (currentIndex - 1 + galleryData.length) % galleryData.length;
+        setLightboxImage(galleryData[prevIndex]);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [lightboxImage]);
+
+  const openLightboxPrev = () => {
+    if (!lightboxImage) return;
+    const currentIndex = galleryData.findIndex((img) => img.id === lightboxImage.id);
+    const prevIndex = (currentIndex - 1 + galleryData.length) % galleryData.length;
+    setLightboxImage(galleryData[prevIndex]);
+  };
+
+  const openLightboxNext = () => {
+    if (!lightboxImage) return;
+    const currentIndex = galleryData.findIndex((img) => img.id === lightboxImage.id);
+    const nextIndex = (currentIndex + 1) % galleryData.length;
+    setLightboxImage(galleryData[nextIndex]);
+  };
+
   return (
     <section id="gallery" className="py-24 relative overflow-hidden bg-[#060a12] text-white">
-      {/* Background Decorative Glow */}
-      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-[#122452]/40 rounded-full blur-3xl pointer-events-none" />
+      {/* Background Subtle Gradient Glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#122452]/30 rounded-full blur-[140px] pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-10">
+
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-4 mb-12">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-lg bg-[#122452] text-white text-xs font-normal uppercase tracking-wider border border-white/20">
+        <div className="text-center max-w-3xl mx-auto space-y-4">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-lg bg-[#122452] text-white text-xs font-semibold uppercase tracking-wider border border-white/20 shadow-md">
             <Sparkles className="w-3.5 h-3.5 text-white" />
-            Interactive Campus Gallery
+            Proven Track Record of Excellence
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-sora font-semibold tracking-tight">
-            Explore Mother Glory <span className="text-white">Gallery Slider</span>
+            Explore Mother Glory <span className="text-white">Achievements</span>
           </h2>
           <p className="text-slate-300 text-base sm:text-lg leading-relaxed font-normal">
-            Take a visual tour through our state-of-the-art NEET coaching centers, interactive classrooms, science labs, and vibrant campus life.
+            A visual showcase of our outstanding NEET toppers, government medical college admissions, and 16+ years of historic ranks.
           </p>
         </div>
 
-        {/* Category Filter Pills */}
-        <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-10">
-          {categories.map((category) => (
-            <button
-              key={category}
-              onClick={() => {
-                setSelectedCategory(category);
-                scrollTo(0);
-              }}
-              className={`px-5 py-2.5 rounded-lg text-xs sm:text-sm font-medium transition-all duration-300 ${
-                selectedCategory === category
-                  ? "bg-[#122452] text-white border-2 border-white shadow-xl shadow-[#122452]/60 scale-105"
-                  : "bg-slate-900 text-slate-300 hover:bg-[#122452] hover:text-white border border-slate-800"
-              }`}
-            >
-              {category}
-            </button>
-          ))}
-        </div>
+        {/* Infinite Carousel Showcase */}
+        <div className="relative">
+          {/* Main Carousel Viewport */}
+          <div className="overflow-hidden py-6" ref={emblaRef}>
+            <div className="flex touch-pan-y items-center">
+              {galleryData.map((item, index) => {
+                const isActive = activeSlideIndex === index;
+                return (
+                  <div
+                    key={item.id}
+                    className={`flex-[0_0_88%] sm:flex-[0_0_75%] md:flex-[0_0_60%] lg:flex-[0_0_50%] min-w-0 px-3 sm:px-5 transition-all duration-700 ease-out transform ${isActive
+                        ? "scale-100 opacity-100 z-20"
+                        : "scale-85 opacity-35 hover:opacity-75 blur-[0.5px]"
+                      }`}
+                  >
+                    <div
+                      onClick={() => setLightboxImage(item)}
+                      className={`relative h-[380px] sm:h-[460px] md:h-[520px] min-h-[380px] sm:min-h-[460px] md:min-h-[520px] w-full rounded-2xl overflow-hidden group/slide cursor-pointer transition-all duration-500 shadow-2xl ${isActive
+                          ? "border-2 border-blue-500/70 shadow-[0_15px_40px_rgba(18,36,82,0.9)] ring-1 ring-white/30"
+                          : "border border-slate-800/80"
+                        }`}
+                    >
+                      <Image
+                        src={item.src}
+                        alt={`Mother Glory NEET Achievement ${index + 1}`}
+                        fill
+                        priority={index === 0}
+                        sizes="(max-width: 768px) 90vw, (max-width: 1200px) 60vw, 50vw"
+                        className="object-cover transition-transform duration-700 group-hover/slide:scale-105"
+                      />
 
-        {/* Carousel Container */}
-        <div className="relative group">
-          {/* Carousel Viewport */}
-          <div className="overflow-hidden rounded-lg border border-slate-800 bg-slate-900/60 backdrop-blur-xl shadow-2xl" ref={emblaRef}>
-            <div className="flex touch-pan-y">
-              {filteredItems.map((item, index) => (
-                <div
-                  key={item.id}
-                  className="flex-[0_0_100%] md:flex-[0_0_85%] lg:flex-[0_0_75%] min-w-0 px-3 sm:px-4 py-4"
-                >
-                  <div className="relative h-[380px] sm:h-[480px] md:h-[540px] w-full rounded-lg overflow-hidden group/slide shadow-xl border border-slate-800/80">
-                    <Image
-                      src={item.src}
-                      alt={item.title}
-                      fill
-                      priority={index === 0}
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 85vw, 75vw"
-                      className="object-cover transition-transform duration-700 group-hover/slide:scale-105"
-                    />
-
-                    {/* Gradient Overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#060a12] via-slate-950/20 to-transparent opacity-90" />
-
-                    {/* Top Right Quick Actions */}
-                    <div className="absolute top-5 right-5 flex items-center gap-2">
-                      <span className="px-3 py-1 rounded-lg bg-[#122452] text-white text-xs font-normal border border-white/20">
-                        {item.category}
-                      </span>
-                      <button
-                        onClick={() => setLightboxImage(item)}
-                        className="p-2.5 rounded-lg bg-[#122452] text-white hover:bg-[#1b3260] transition-colors border border-white/20 font-medium"
-                        title="View Fullscreen"
-                        aria-label="Expand image in lightbox"
-                      >
-                        <Maximize2 className="w-4 h-4 text-white" />
-                      </button>
-                    </div>
-
-                    {/* Bottom Caption Overlay */}
-                    <div className="absolute bottom-6 left-6 right-6 text-white space-y-2">
-                      <h3 className="text-xl sm:text-2xl font-sora font-semibold tracking-tight text-white">
-                        {item.title}
-                      </h3>
-                      <p className="text-sm sm:text-base text-slate-200 max-w-2xl leading-relaxed font-normal">
-                        {item.description}
-                      </p>
+                      {/* Floating Full View Badge */}
+                      <div className="absolute top-4 right-4 z-10">
+                        <div
+                          className="px-3.5 py-2 rounded-xl bg-[#122452]/85 text-white border border-white/20 font-medium text-xs shadow-xl backdrop-blur-md group-hover/slide:scale-105 transition-transform flex items-center gap-2"
+                        >
+                          <Maximize2 className="w-3.5 h-3.5 text-white" />
+                          <span>Full View</span>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
 
           {/* Navigation Prev Button */}
           <button
             onClick={scrollPrev}
-            className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-lg bg-[#122452] border border-white/20 text-white flex items-center justify-center shadow-xl hover:bg-[#1b3260] transition-all opacity-90 hover:scale-110 focus:outline-none font-medium"
+            className="absolute left-1 sm:left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-xl bg-[#122452] border border-white/20 text-white flex items-center justify-center shadow-2xl hover:bg-[#1b3260] transition-all opacity-95 hover:scale-110 focus:outline-none z-30 backdrop-blur-md"
             aria-label="Previous slide"
           >
-            <ChevronLeft className="w-6 h-6" />
+            <ChevronLeft className="w-6 h-6 text-white" />
           </button>
 
           {/* Navigation Next Button */}
           <button
             onClick={scrollNext}
-            className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-lg bg-[#122452] border border-white/20 text-white flex items-center justify-center shadow-xl hover:bg-[#1b3260] transition-all opacity-90 hover:scale-110 focus:outline-none font-medium"
+            className="absolute right-1 sm:right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-xl bg-[#122452] border border-white/20 text-white flex items-center justify-center shadow-2xl hover:bg-[#1b3260] transition-all opacity-95 hover:scale-110 focus:outline-none z-30 backdrop-blur-md"
             aria-label="Next slide"
           >
-            <ChevronRight className="w-6 h-6" />
+            <ChevronRight className="w-6 h-6 text-white" />
           </button>
         </div>
 
-        {/* Slider Controls Bar (Dots & Play/Pause) */}
-        <div className="mt-8 flex items-center justify-between flex-wrap gap-4 glass-panel p-4 rounded-lg border border-slate-800 bg-slate-900">
-          
-          {/* Slide Indicator Dots */}
-          <div className="flex items-center gap-2">
-            {filteredItems.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => scrollTo(index)}
-                className={`h-2.5 rounded-lg transition-all duration-300 ${
-                  activeSlideIndex === index
-                    ? "w-8 bg-[#122452] border border-white"
-                    : "w-2.5 bg-slate-700 hover:bg-slate-500"
-                }`}
-                aria-label={`Go to slide ${index + 1}`}
-              />
-            ))}
-          </div>
-
-          {/* Slide Count & Play/Pause Button */}
-          <div className="flex items-center gap-4">
-            <span className="text-xs font-normal text-slate-300">
-              Slide <strong className="text-white font-semibold">{activeSlideIndex + 1}</strong> of {filteredItems.length}
-            </span>
+        {/* Clean Dotted Pagination */}
+        <div className="mt-8 flex items-center justify-center gap-2.5">
+          {galleryData.map((_, index) => (
             <button
-              onClick={toggleAutoplay}
-              className="flex items-center gap-2 px-4 py-2 rounded-lg bg-[#122452] border border-white/20 text-white text-xs font-medium hover:bg-[#1b3260] transition-colors"
-            >
-              {isPlaying ? (
-                <>
-                  <Pause className="w-3.5 h-3.5 text-white" />
-                  <span>Pause</span>
-                </>
-              ) : (
-                <>
-                  <Play className="w-3.5 h-3.5 text-white" />
-                  <span>Autoplay</span>
-                </>
-              )}
-            </button>
-          </div>
-
+              key={index}
+              onClick={() => scrollTo(index)}
+              className={`h-2.5 rounded-full transition-all duration-300 cursor-pointer ${
+                activeSlideIndex === index
+                  ? "w-8 bg-[#122452] border border-blue-400/80 shadow-md shadow-blue-500/20"
+                  : "w-2.5 bg-slate-700 hover:bg-slate-500"
+              }`}
+              aria-label={`Go to slide ${index + 1}`}
+            />
+          ))}
         </div>
 
       </div>
 
-      {/* Lightbox Modal */}
+      {/* Lightbox Modal - Enhanced Full View Modal with Prev/Next Navigation */}
       {lightboxImage && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/95 backdrop-blur-2xl animate-in fade-in duration-300">
-          <div className="relative max-w-5xl w-full bg-slate-900 rounded-lg overflow-hidden border border-slate-800 shadow-2xl">
-            <button
-              onClick={() => setLightboxImage(null)}
-              className="absolute top-4 right-4 z-10 p-3 rounded-lg bg-[#122452] text-white hover:bg-slate-800 transition-colors border border-white/20 font-medium"
-              aria-label="Close modal"
-            >
-              <X className="w-6 h-6" />
-            </button>
+        <div
+          onClick={() => setLightboxImage(null)}
+          className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-slate-950/95 backdrop-blur-2xl animate-in fade-in duration-300"
+        >
+          <div
+            onClick={(e) => e.stopPropagation()}
+            className="relative max-w-6xl w-full h-[90vh] bg-[#060a12] rounded-2xl overflow-hidden border border-slate-800 shadow-2xl flex flex-col items-center justify-center"
+          >
+            {/* Modal Top Header */}
+            <div className="absolute top-4 left-4 right-4 z-20 flex items-center justify-between pointer-events-none">
+              <div className="px-3.5 py-1.5 rounded-xl bg-[#122452]/90 text-white text-xs font-semibold border border-white/20 backdrop-blur-md pointer-events-auto">
+                Full View • Poster {galleryData.findIndex((i) => i.id === lightboxImage.id) + 1} of {galleryData.length}
+              </div>
+              <button
+                onClick={() => setLightboxImage(null)}
+                className="p-3 rounded-xl bg-[#122452]/90 text-white hover:bg-red-600 transition-colors border border-white/20 font-medium shadow-xl backdrop-blur-md pointer-events-auto"
+                aria-label="Close modal"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
 
-            <div className="relative h-[65vh] w-full bg-black">
+            {/* Main Lightbox Image Viewport */}
+            <div className="relative w-full h-full p-4 flex items-center justify-center">
               <Image
                 src={lightboxImage.src}
-                alt={lightboxImage.title}
+                alt="Mother Glory NEET Achievement Full View"
                 fill
+                priority
                 sizes="100vw"
-                className="object-contain"
+                className="object-contain p-2"
               />
             </div>
 
-            <div className="p-6 bg-slate-900 space-y-2 border-t border-slate-800">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-[#122452] text-white text-xs font-normal border border-white/20">
-                {lightboxImage.category}
-              </div>
-              <h3 className="text-2xl font-sora font-semibold text-white">{lightboxImage.title}</h3>
-              <p className="text-slate-300 text-sm font-normal">{lightboxImage.description}</p>
-            </div>
+            {/* Modal Prev Button */}
+            <button
+              onClick={openLightboxPrev}
+              className="absolute left-4 top-1/2 -translate-y-1/2 p-3 rounded-xl bg-[#122452]/90 text-white hover:bg-[#1b3260] transition-all border border-white/20 shadow-2xl backdrop-blur-md z-20"
+              aria-label="Previous achievement poster"
+            >
+              <ChevronLeft className="w-6 h-6" />
+            </button>
+
+            {/* Modal Next Button */}
+            <button
+              onClick={openLightboxNext}
+              className="absolute right-4 top-1/2 -translate-y-1/2 p-3 rounded-xl bg-[#122452]/90 text-white hover:bg-[#1b3260] transition-all border border-white/20 shadow-2xl backdrop-blur-md z-20"
+              aria-label="Next achievement poster"
+            >
+              <ChevronRight className="w-6 h-6" />
+            </button>
           </div>
         </div>
       )}

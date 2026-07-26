@@ -91,8 +91,8 @@ export default function Hero() {
               <div className="relative rounded-lg overflow-hidden glass-panel p-3 shadow-2xl border-2 border-[#122452] group">
                 <div className="relative h-80 sm:h-96 w-full rounded-lg overflow-hidden">
                   <Image
-                    src="/images/gallery/gallery-1.png"
-                    alt="Mother Glory Campus Classroom"
+                    src="/images/hero_banner_mg.png"
+                    alt="Mother Glory NEET Academy Emblem"
                     fill
                     priority
                     sizes="(max-width: 1024px) 100vw, 500px"

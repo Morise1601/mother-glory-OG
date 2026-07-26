@@ -16,6 +16,25 @@ export default function Footer() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
+  const handleSectionClick = (targetId: string, e: React.MouseEvent) => {
+    e.preventDefault();
+    if (targetId === "home") {
+      if (typeof window !== "undefined" && window.location.pathname === "/") {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      } else {
+        window.location.href = "/";
+      }
+      return;
+    }
+
+    const element = document.getElementById(targetId);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    } else {
+      window.location.href = `/?section=${targetId}`;
+    }
+  };
+
   return (
     <footer className="bg-[#060a12] text-slate-400 border-t border-slate-800 pt-16 pb-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -24,7 +43,11 @@ export default function Footer() {
 
           {/* Col 1: Brand Info with Prominent Enlarged Logo */}
           <div className="lg:col-span-2 space-y-6">
-            <Link href="/#home" className="inline-block focus:outline-none transition-transform duration-300 hover:scale-105">
+            <a
+              href="/"
+              onClick={(e) => handleSectionClick("home", e)}
+              className="inline-block focus:outline-none transition-transform duration-300 hover:scale-105"
+            >
               <div className="relative h-20 w-72 sm:h-24 sm:w-80">
                 <Image
                   src="/images/logo_mg.png"
@@ -34,7 +57,7 @@ export default function Footer() {
                   className="object-contain object-left"
                 />
               </div>
-            </Link>
+            </a>
             <p className="text-sm text-slate-300 max-w-sm leading-relaxed">
               Mother Glory NEET Academy is the leading entrance coaching institute in Puducherry &amp; Karaikal, turning medical aspirants&apos; dreams into reality through 16+ years of academic excellence.
             </p>
@@ -64,13 +87,13 @@ export default function Footer() {
           <div className="space-y-4">
             <h3 className="text-sm font-sora font-semibold text-white uppercase tracking-wider">Quick Links</h3>
             <ul className="space-y-2.5 text-sm font-normal">
-              <li><Link href="/#home" className="hover:text-white transition-colors">Home</Link></li>
-              <li><Link href="/#about" className="hover:text-white transition-colors">About Us</Link></li>
-              <li><Link href="/#founder" className="hover:text-white transition-colors">Founder's Vision</Link></li>
-              <li><Link href="/#features" className="hover:text-white transition-colors">Features & Campus</Link></li>
-              <li><Link href="/#gallery" className="hover:text-white transition-colors">Gallery Slider</Link></li>
-              <li><Link href="/#testimonials" className="hover:text-white transition-colors">Testimonials</Link></li>
-              <li><Link href="/#contact" className="hover:text-white transition-colors">Contact Admissions</Link></li>
+              <li><a href="#home" onClick={(e) => handleSectionClick("home", e)} className="hover:text-white transition-colors cursor-pointer">Home</a></li>
+              <li><a href="#about" onClick={(e) => handleSectionClick("about", e)} className="hover:text-white transition-colors cursor-pointer">About Us</a></li>
+              <li><a href="#founder" onClick={(e) => handleSectionClick("founder", e)} className="hover:text-white transition-colors cursor-pointer">Founder&apos;s Vision</a></li>
+              <li><a href="#features" onClick={(e) => handleSectionClick("features", e)} className="hover:text-white transition-colors cursor-pointer">Features &amp; Campus</a></li>
+              <li><a href="#gallery" onClick={(e) => handleSectionClick("gallery", e)} className="hover:text-white transition-colors cursor-pointer">Gallery Slider</a></li>
+              <li><a href="#testimonials" onClick={(e) => handleSectionClick("testimonials", e)} className="hover:text-white transition-colors cursor-pointer">Testimonials</a></li>
+              <li><a href="#contact" onClick={(e) => handleSectionClick("contact", e)} className="hover:text-white transition-colors cursor-pointer">Contact Admissions</a></li>
             </ul>
           </div>
 
