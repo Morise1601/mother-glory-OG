@@ -18,7 +18,7 @@ interface GalleryItem {
   id: string;
   src: string;
   title: string;
-  category: "Classrooms" | "Science & STEM" | "Sports" | "Performing Arts" | "Campus";
+  category: "Classrooms" | "Science & Labs" | "Library" | "Seminars" | "Campus";
   description: string;
 }
 
@@ -26,41 +26,41 @@ const galleryData: GalleryItem[] = [
   {
     id: "g1",
     src: "/images/gallery/gallery-1.png",
-    title: "Interactive Smart Classroom",
+    title: "Interactive NEET Coaching Classroom",
     category: "Classrooms",
-    description: "Sunlit ergonomic spaces integrated with interactive touch displays & collaborative work pods.",
+    description: "Sunlit ergonomic spaces integrated with interactive touch displays for medical entrance lectures.",
   },
   {
     id: "g2",
     src: "/images/gallery/gallery-2.png",
-    title: "Modern Resource & Media Library",
-    category: "Campus",
-    description: "Serene reading hubs with extensive physical and digital learning archives.",
+    title: "NEET Study & Reference Library",
+    category: "Library",
+    description: "Serene reading hubs with extensive physical and digital NCERT & NEET entrance question archives.",
   },
   {
     id: "g3",
     src: "/images/gallery/gallery-3.png",
-    title: "High-Tech STEM & Robotics Center",
-    category: "Science & STEM",
-    description: "Students building and coding automated robotics with cutting-edge microcontrollers.",
+    title: "Advanced Biology & Chemistry Lab",
+    category: "Science & Labs",
+    description: "Hands-on medical science experiments, 3D anatomical models, and chemistry mechanisms.",
   },
   {
     id: "g4",
     src: "/images/gallery/gallery-4.png",
-    title: "Championship Sports Complex",
-    category: "Sports",
-    description: "Indoor multi-sport gymnasium with professional hardwood flooring and arena lighting.",
+    title: "Motivational Seminar & Examination Hall",
+    category: "Seminars",
+    description: "Dedicated hall for NEET mock examinations, strategy sessions, and rank award ceremonies.",
   },
   {
     id: "g5",
     src: "/images/gallery/gallery-5.png",
-    title: "Grand Performing Arts Auditorium",
-    category: "Performing Arts",
-    description: "Acoustically tuned stage for theatrical productions, music performances, and assemblies.",
+    title: "Puducherry & Karaikal Campus",
+    category: "Campus",
+    description: "Inspiring campus environment designed for focused study, peace of mind, and academic success.",
   },
 ];
 
-const categories = ["All", "Classrooms", "Science & STEM", "Sports", "Performing Arts", "Campus"] as const;
+const categories = ["All", "Classrooms", "Science & Labs", "Library", "Seminars", "Campus"] as const;
 
 export default function GallerySection() {
   const [selectedCategory, setSelectedCategory] = useState<string>("All");
@@ -137,7 +137,7 @@ export default function GallerySection() {
             Explore Mother Glory <span className="text-white">Gallery Slider</span>
           </h2>
           <p className="text-slate-300 text-base sm:text-lg leading-relaxed font-normal">
-            Take a visual tour through our state-of-the-art facilities, modern classrooms, robotics lab, and vibrant campus life.
+            Take a visual tour through our state-of-the-art NEET coaching centers, interactive classrooms, science labs, and vibrant campus life.
           </p>
         </div>
 

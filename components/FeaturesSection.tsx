@@ -1,41 +1,41 @@
-import { Cpu, Library, Trophy, Music, Shield, Bus, Sparkles } from "lucide-react";
+import { GraduationCap, BookOpen, Award, CheckCircle2, Users, Bus, Sparkles } from "lucide-react";
 
 const features = [
   {
-    icon: Cpu,
-    title: "Robotics & Innovation Lab",
-    category: "STEM",
-    description: "Hands-on experience with 3D printers, microcontrollers, and artificial intelligence workshops.",
+    icon: GraduationCap,
+    title: "NEET & Entrance Coaching",
+    category: "Coaching",
+    description: "Specialized, result-oriented coaching for NEET, JIPMER, AIIMS, and top competitive medical entrance exams.",
   },
   {
-    icon: Library,
-    title: "Digital & Physical Library",
+    icon: BookOpen,
+    title: "NCERT & Exam Modules",
     category: "Academics",
-    description: "Over 25,000 physical volumes and 24/7 access to international research journals.",
+    description: "Exhaustive NCERT-focused study materials, chapter-wise question banks, and 15+ years solved papers.",
   },
   {
-    icon: Trophy,
-    title: "Multi-Sport Complex",
-    category: "Athletics",
-    description: "Olympic-standard basketball courts, swimming pool, badminton arenas, and trained coaches.",
+    icon: Award,
+    title: "Daily Tests & NEET Mock Exams",
+    category: "Assessment",
+    description: "Daily Practice Problems (DPP), weekly tests, and full-length simulated NEET exams with error analysis.",
   },
   {
-    icon: Music,
-    title: "Performing Arts Theatre",
-    category: "Arts",
-    description: "Acoustically tuned 600-seater auditorium for drama, musical concerts, and cultural galas.",
+    icon: Users,
+    title: "Expert Biology & Science Faculties",
+    category: "Mentorship",
+    description: "Highly qualified educators providing 1-on-1 doubt resolution, concept clarity, and strategy guidance.",
+  },
+  {
+    icon: CheckCircle2,
+    title: "Interactive Smart Classrooms",
+    category: "Learning",
+    description: "High-definition visual learning tools for complex anatomical models, diagrams, and chemistry mechanisms.",
   },
   {
     icon: Bus,
-    title: "GPS-Tracked Safe Transport",
-    category: "Safety",
-    description: "Fleet of air-conditioned buses equipped with real-time GPS tracking and dedicated attendants.",
-  },
-  {
-    icon: Shield,
-    title: "Eco-Friendly Smart Campus",
-    category: "Infrastructure",
-    description: "Solar-powered energy systems, lush green botanical gardens, and zero-plastic dining spaces.",
+    title: "Safe & Convenient Transport",
+    category: "Campus",
+    description: "Dedicated, safe transport network connecting medical aspirants across Karaikal, Puducherry, and nearby areas.",
   },
 ];
 
@@ -51,13 +51,13 @@ export default function FeaturesSection() {
         <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-lg bg-[#122452] text-white text-xs font-normal uppercase tracking-wider border border-white/20">
             <Sparkles className="w-3.5 h-3.5 text-white" />
-            World-Class Facilities
+            Academy Features &amp; Ecosystem
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-sora font-semibold tracking-tight">
-            Designed to <span className="text-white">Inspire & Empower</span> Every Student
+            Designed to <span className="text-white">Inspire &amp; Empower</span> Medical Aspirants
           </h2>
           <p className="text-slate-300 text-base sm:text-lg leading-relaxed font-normal">
-            Our campus is thoughtfully constructed to provide an immersive environment for learning, creation, health, and holistic personal growth.
+            Our academy provides a complete learning ecosystem with expert faculties, comprehensive test series, and dedicated mentorship for NEET success.
           </p>
         </div>
 

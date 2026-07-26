@@ -74,7 +74,7 @@ export default function FounderSection() {
               {/* Photo Showcase */}
               <div className="relative h-[380px] sm:h-[440px] w-full rounded-lg overflow-hidden mb-5 bg-[#060a12]">
                 <Image
-                  src="/images/cofounder.png"
+                  src="/images/cofounder-final.png"
                   alt="Mr. Robert Clyive - Chairman & Managing Trustee"
                   fill
                   sizes="(max-width: 768px) 100vw, 50vw"

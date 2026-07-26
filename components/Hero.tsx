@@ -12,7 +12,7 @@ export default function Hero() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
-          
+
           {/* Left Column: Headline & Call To Action */}
           <div className="lg:col-span-7 space-y-8 text-center lg:text-left">
             {/* Top Badge */}
@@ -33,7 +33,7 @@ export default function Hero() {
 
             {/* Subtext */}
             <p className="text-lg sm:text-xl text-slate-700 dark:text-slate-200 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-normal">
-              At <strong className="font-semibold text-[#122452] dark:text-white">Mother Glory</strong>, we nurture curious minds through world-class holistic education, state-of-the-art STEM laboratories, and an environment rooted in character and innovation.
+              At <strong className="text-[#122452]">Mother Glory Institute</strong>, we have been shaping future doctors for over 16 years through expert NEET coaching, result-oriented teaching methodologies, and personalized mentoring. With a proven track record of 1,000+ students securing admissions to medical colleges, we are committed to turning every medical aspirant's dream into reality.
             </p>
 
             {/* Action Buttons */}
@@ -76,9 +76,9 @@ export default function Hero() {
               <div className="space-y-1">
                 <div className="flex items-center justify-center lg:justify-start gap-1 text-[#122452] dark:text-white">
                   <GraduationCap className="w-4 h-4" />
-                  <span className="font-semibold text-slate-900 dark:text-white">2,500+</span>
+                  <span className="font-semibold text-slate-900 dark:text-white">3,000+</span>
                 </div>
-                <p className="text-xs text-slate-600 dark:text-slate-400">Achieving Alumni</p>
+                <p className="text-xs text-slate-600 dark:text-slate-400">NEET Qualifiers</p>
               </div>
             </div>
           </div>
@@ -86,7 +86,7 @@ export default function Hero() {
           {/* Right Column: Visual Showcase */}
           <div className="lg:col-span-5 relative">
             <div className="relative mx-auto max-w-md lg:max-w-none">
-              
+
               {/* Main Feature Banner Card */}
               <div className="relative rounded-lg overflow-hidden glass-panel p-3 shadow-2xl border-2 border-[#122452] group">
                 <div className="relative h-80 sm:h-96 w-full rounded-lg overflow-hidden">
@@ -103,10 +103,10 @@ export default function Hero() {
                   {/* Floating Overlay Info */}
                   <div className="absolute bottom-6 left-6 right-6 text-white space-y-2">
                     <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-[#122452] text-white text-xs font-normal uppercase tracking-wider border border-white/20">
-                      <ShieldCheck className="w-3.5 h-3.5 text-white" /> Next-Gen Learning
+                      <ShieldCheck className="w-3.5 h-3.5 text-white" /> Pioneer NEET Academy
                     </div>
-                    <h3 className="text-xl font-sora font-semibold">Interactive STEM & Digital Learning</h3>
-                    <p className="text-xs text-slate-200">Empowering every child with future-ready skills</p>
+                    <h3 className="text-xl font-sora font-semibold">16+ Years of Medical Excellence</h3>
+                    <p className="text-xs text-slate-200">1,000+ seats secured in JIPMER, AIIMS &amp; CMC</p>
                   </div>
                 </div>
               </div>
@@ -117,8 +117,8 @@ export default function Hero() {
                   <Award className="w-6 h-6" />
                 </div>
                 <div>
-                  <p className="text-xs font-normal text-slate-200">Awarded #1</p>
-                  <p className="text-sm font-semibold text-white">Holistic School</p>
+                  <p className="text-xs font-normal text-slate-200">Leading Institute</p>
+                  <p className="text-sm font-semibold text-white">NEET Coaching</p>
                 </div>
               </div>
 
@@ -130,8 +130,8 @@ export default function Hero() {
                   <div className="w-8 h-8 rounded-lg bg-[#1b3260] text-white border-2 border-white flex items-center justify-center text-xs font-semibold">A</div>
                 </div>
                 <div>
-                  <p className="text-xs font-semibold text-white">Top Rated Faculty</p>
-                  <p className="text-[10px] text-slate-300">Experienced Mentors</p>
+                  <p className="text-xs font-semibold text-white">Puducherry &amp; Karaikal</p>
+                  <p className="text-[10px] text-slate-300">Pioneer Entrance Academy</p>
                 </div>
               </div>
 

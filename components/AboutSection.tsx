@@ -1,35 +1,35 @@
-import { Heart, Compass, Target, Lightbulb, CheckCircle2 } from "lucide-react";
+import { Heart, Compass, Target, Award, CheckCircle2 } from "lucide-react";
 
 const pillars = [
   {
     icon: Target,
-    title: "Academic Rigor",
-    description: "Inquiry-based curriculum designed to foster deep analytical thinking and creative problem-solving.",
+    title: "Proven NEET Coaching",
+    description: "Pioneer entrance coaching methodology designed to foster deep analytical problem-solving in Physics, Chemistry, & Biology.",
   },
   {
     icon: Compass,
-    title: "Character & Values",
-    description: "Instilling integrity, empathy, and social responsibility through structured leadership programs.",
+    title: "Values & Mentorship",
+    description: "Instilling moral values, dedication, and personal discipline through structured 1-on-1 student mentorship.",
   },
   {
-    icon: Lightbulb,
-    title: "Innovation & STEM",
-    description: "Hands-on robotics, coding, and scientific research labs equipped with cutting-edge tools.",
+    icon: Award,
+    title: "NEET Test Series & DPPs",
+    description: "Daily Practice Problems (DPP), chapter-wise tests, and simulated full-length NEET entrance examinations.",
   },
   {
     icon: Heart,
-    title: "Holistic Wellbeing",
-    description: "Nurturing physical health, emotional resilience, mindfulness, and creative artistic expression.",
+    title: "Holistic Student Care",
+    description: "Nurturing emotional resilience, stress-free learning, constant motivation, and individual doubt-clearing.",
   },
 ];
 
 const familyReasons = [
-  "1:15 Teacher-Student Ratio",
-  "100% Smart Classrooms",
-  "Global Exchange Programs",
-  "Advanced STEM & AI Modules",
-  "State-of-the-Art Sports Arena",
-  "24/7 Campus Security & Care",
+  "16+ Years NEET Excellence",
+  "3,000+ Eligible NEET Qualifiers",
+  "1,000+ Medical College Seats",
+  "JIPMER, AIIMS & CMC Selections",
+  "Expert Biology & Science Faculty",
+  "Daily Mock Tests & Mentorship",
 ];
 
 export default function AboutSection() {
@@ -40,13 +40,13 @@ export default function AboutSection() {
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto space-y-4">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-lg bg-[#122452] text-white text-xs font-normal uppercase tracking-wider border border-[#122452]">
-            About Mother Glory
+            About Mother Glory NEET Academy
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-sora font-semibold text-[#122452] dark:text-white tracking-tight">
-            Where Visionary Learning Meets <span className="text-[#122452] dark:text-blue-300">Unwavering Glory</span>
+            Pioneering Medical Entrance <span className="text-[#122452] dark:text-blue-300">Coaching Excellence</span>
           </h2>
           <p className="text-slate-700 dark:text-slate-300 text-base sm:text-lg leading-relaxed font-normal">
-            Founded with the commitment to provide transformative education, Mother Glory creates an environment where every student discovers their innate potential and shines brightly in an ever-evolving world.
+            Mother Glory NEET Academy is the best and leading institute in Puducherry &amp; Karaikal. We are the pioneer institution training students to face all competitive entrance exams. In 16 years, 3,000+ students cleared eligibility marks and 1,000+ students secured medical courses in leading institutions like JIPMER, AIIMS, and CMC.
           </p>
         </div>
 
@@ -79,10 +79,10 @@ export default function AboutSection() {
 
             <div className="lg:col-span-6 space-y-4">
               <h3 className="text-2xl sm:text-3xl font-sora font-semibold text-white">
-                Why Families Choose Mother Glory
+                Why Aspirants Choose Mother Glory
               </h3>
               <p className="text-slate-200 text-sm sm:text-base leading-relaxed font-normal">
-                We combine traditional moral foundations with forward-thinking educational techniques, ensuring a seamless journey from foundational learning to advanced pre-university readiness.
+                With God&apos;s grace and glorious Mother Mary&apos;s blessings, we combine moral values with result-oriented coaching, guiding medical aspirants from foundational concepts to top rank achievements.
               </p>
             </div>
 
