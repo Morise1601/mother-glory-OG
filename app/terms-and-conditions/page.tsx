@@ -5,10 +5,11 @@ import Footer from "@/components/Footer";
 import { ShieldCheck, ArrowLeft, FileText, CheckCircle2, Clock, HelpCircle, Lock } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Terms and Conditions | Mother Glory Institutions",
+  title: "Terms and Conditions | Mother Glory Coaching & Tutorial Centre",
   description:
-    "Review the official Terms and Conditions governing academic programs, campus conduct, digital services, and enrollment policies at Mother Glory.",
+    "Review the official Terms and Conditions governing academic programs, campus conduct, digital services, and enrollment policies at Mother Glory Coaching & Tutorial Centre.",
   keywords: [
+    "Mother Glory Coaching & Tutorial Centre Terms and Conditions",
     "Mother Glory Terms and Conditions",
     "School Terms of Service",
     "Academic Policies",
@@ -19,17 +20,17 @@ export const metadata: Metadata = {
     canonical: "/terms-and-conditions",
   },
   openGraph: {
-    title: "Terms and Conditions | Mother Glory Institutions",
+    title: "Terms and Conditions | Mother Glory Coaching & Tutorial Centre",
     description:
-      "Official Terms and Conditions for Mother Glory Educational Institution.",
+      "Official Terms and Conditions for Mother Glory Coaching & Tutorial Centre.",
     url: "https://motherglory.edu/terms-and-conditions",
-    siteName: "Mother Glory",
+    siteName: "Mother Glory Coaching & Tutorial Centre",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Terms and Conditions | Mother Glory Institutions",
-    description: "Official legal terms and academic policies for Mother Glory.",
+    title: "Terms and Conditions | Mother Glory Coaching & Tutorial Centre",
+    description: "Official legal terms and academic policies for Mother Glory Coaching & Tutorial Centre.",
   },
 };
 
@@ -60,12 +61,12 @@ export default function TermsAndConditionsPage() {
     "@type": "WebPage",
     name: "Terms and Conditions",
     description:
-      "Terms and conditions for Mother Glory Educational Institution.",
+      "Terms and conditions for Mother Glory Coaching & Tutorial Centre.",
     url: "https://motherglory.edu/terms-and-conditions",
     dateModified: "2026-07-25",
     publisher: {
       "@type": "EducationalOrganization",
-      name: "Mother Glory",
+      name: "Mother Glory Coaching & Tutorial Centre",
       url: "https://motherglory.edu",
     },
   };

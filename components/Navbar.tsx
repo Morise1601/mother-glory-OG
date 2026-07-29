@@ -86,12 +86,12 @@ export default function Navbar() {
             href="/"
             onClick={(e) => handleNavClick("home", e)}
             className="flex items-center flex-shrink-0 group focus:outline-none rounded-lg py-1 transition-transform duration-300 hover:scale-105"
-            aria-label="Mother Glory Home"
+            aria-label="Mother Glory Coaching & Tutorial Centre Home"
           >
             <div className="relative h-20 w-20">
               <Image
                 src="/images/logo_mg.png"
-                alt="Mother Glory Logo"
+                alt="Mother Glory Coaching & Tutorial Centre Logo"
                 fill
                 priority
                 sizes="80px"

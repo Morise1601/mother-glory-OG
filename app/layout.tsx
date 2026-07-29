@@ -24,10 +24,11 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: "Mother Glory | NEET Coaching Center in Karaikal & Puducherry",
+  title: "Mother Glory Coaching & Tutorial Centre | NEET Coaching in Karaikal & Puducherry",
   description:
-    "Best NEET Coaching in Karaikal & Puducherry | Mother Glory",
+    "Best NEET Coaching in Karaikal & Puducherry | Mother Glory Coaching & Tutorial Centre",
   keywords: [
+    "Mother Glory Coaching & Tutorial Centre",
     "Mother Glory",
     "Mother Glory NEET Coaching center",
     "Coaching Center",
@@ -36,25 +37,25 @@ export const metadata: Metadata = {
     "NEET Coaching in Tamil Nadu",
     "NEET Coaching in Puducherry",
   ],
-  authors: [{ name: "Mother Glory Institutions" }],
-  creator: "Mother Glory",
-  publisher: "Mother Glory",
+  authors: [{ name: "Mother Glory Coaching & Tutorial Centre" }],
+  creator: "Mother Glory Coaching & Tutorial Centre",
+  publisher: "Mother Glory Coaching & Tutorial Centre",
   metadataBase: new URL("https://motherglory.edu"),
   alternates: {
     canonical: "/",
   },
   openGraph: {
-    title: "Mother Glory | NEET Coaching Centre",
+    title: "Mother Glory Coaching & Tutorial Centre | NEET Coaching Centre",
     description:
-      "Best NEET Coaching in Karaikal & Puducherry | Mother Glory",
+      "Best NEET Coaching in Karaikal & Puducherry | Mother Glory Coaching & Tutorial Centre",
     url: "https://motherglory.edu",
-    siteName: "Mother Glory",
+    siteName: "Mother Glory Coaching & Tutorial Centre",
     images: [
       {
         url: "/images/gallery/gallery-1.png",
         width: 1200,
         height: 630,
-        alt: "Mother Glory Interactive Campus Classroom",
+        alt: "Mother Glory Coaching & Tutorial Centre Interactive Campus Classroom",
       },
     ],
     locale: "en_US",
@@ -62,9 +63,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Mother Glory | NEET Coaching Centre",
+    title: "Mother Glory Coaching & Tutorial Centre | NEET Coaching Centre",
     description:
-      "Best NEET Coaching in Karaikal & Puducherry | Mother Glory",
+      "Best NEET Coaching in Karaikal & Puducherry | Mother Glory Coaching & Tutorial Centre",
     images: ["/images/gallery/gallery-1.png"],
   },
   robots: {
@@ -88,12 +89,12 @@ export default function RootLayout({
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "EducationalOrganization",
-    name: "Mother Glory",
+    name: "Mother Glory Coaching & Tutorial Centre",
     url: "https://motherglory.edu",
     logo: "https://motherglory.edu/images/Logo%20bg%20removed.png",
     image: "https://motherglory.edu/images/gallery/gallery-1.png",
     description:
-      "Best NEET Coaching in Karaikal & Puducherry | Mother Glory",
+      "Best NEET Coaching in Karaikal & Puducherry | Mother Glory Coaching & Tutorial Centre",
     address: {
       "@type": "PostalAddress",
       streetAddress: "Main Knowledge Hub Road, Sector 12",

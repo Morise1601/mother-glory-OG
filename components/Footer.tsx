@@ -51,7 +51,7 @@ export default function Footer() {
               <div className="relative h-20 w-72 sm:h-24 sm:w-80">
                 <Image
                   src="/images/logo_mg.png"
-                  alt="Mother Glory Logo"
+                  alt="Mother Glory Coaching & Tutorial Centre Logo"
                   fill
                   sizes="(max-width: 640px) 288px, 320px"
                   className="object-contain object-left"
@@ -59,7 +59,7 @@ export default function Footer() {
               </div>
             </a>
             <p className="text-sm text-slate-300 max-w-sm leading-relaxed">
-              Mother Glory NEET Academy is the leading entrance coaching institute in Puducherry &amp; Karaikal, turning medical aspirants&apos; dreams into reality through 16+ years of academic excellence.
+              Mother Glory Coaching &amp; Tutorial Centre is the leading entrance coaching institute in Puducherry &amp; Karaikal, turning medical aspirants&apos; dreams into reality through 16+ years of academic excellence.
             </p>
             <div className="flex items-center gap-3">
               <a
@@ -140,7 +140,7 @@ export default function Footer() {
         {/* Bottom Credits & Legal Links & Back to top */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs">
           <p className="text-slate-400 text-center sm:text-left font-normal" suppressHydrationWarning>
-            © {currentYear} Mother Glory. All Rights Reserved. Designed for Excellence.
+            © {currentYear} Mother Glory Coaching &amp; Tutorial Centre. All Rights Reserved. Designed for Excellence.
           </p>
           <div className="flex items-center gap-6">
             <Link href="/terms-and-conditions" className="text-slate-400 hover:text-white transition-colors">

@@ -33,7 +33,7 @@ export default function Hero() {
 
             {/* Subtext */}
             <p className="text-lg sm:text-xl text-slate-700 dark:text-slate-200 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-normal">
-              At <strong className="text-[#122452]">Mother Glory Institute</strong>, we have been shaping future doctors for over 16 years through expert NEET coaching, result-oriented teaching methodologies, and personalized mentoring. With a proven track record of 1,000+ students securing admissions to medical colleges, we are committed to turning every medical aspirant's dream into reality.
+              At <strong className="text-[#122452]">Mother Glory Coaching &amp; Tutorial Centre</strong>, we have been shaping future doctors for over 16 years through expert NEET coaching, result-oriented teaching methodologies, and personalized mentoring. With a proven track record of 1,000+ students securing admissions to medical colleges, we are committed to turning every medical aspirant's dream into reality.
             </p>
 
             {/* Action Buttons */}

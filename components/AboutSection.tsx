@@ -40,13 +40,13 @@ export default function AboutSection() {
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto space-y-4">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-lg bg-[#122452] text-white text-xs font-normal uppercase tracking-wider border border-[#122452]">
-            About Mother Glory NEET Academy
+            About Mother Glory Coaching &amp; Tutorial Centre
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-sora font-semibold text-[#122452] dark:text-white tracking-tight">
             Pioneering Medical Entrance <span className="text-[#122452] dark:text-blue-300">Coaching Excellence</span>
           </h2>
           <p className="text-slate-700 dark:text-slate-300 text-base sm:text-lg leading-relaxed font-normal">
-            Mother Glory NEET Academy is the best and leading institute in Puducherry &amp; Karaikal. We are the pioneer institution training students to face all competitive entrance exams. In 16 years, 3,000+ students cleared eligibility marks and 1,000+ students secured medical courses in leading institutions like JIPMER, AIIMS, and CMC.
+            Mother Glory Coaching &amp; Tutorial Centre is the best and leading institute in Puducherry &amp; Karaikal. We are the pioneer institution training students to face all competitive entrance exams. In 16 years, 3,000+ students cleared eligibility marks and 1,000+ students secured medical courses in leading institutions like JIPMER, AIIMS, and CMC.
           </p>
         </div>
 

@@ -5,10 +5,11 @@ import Footer from "@/components/Footer";
 import { ShieldCheck, ArrowLeft, Lock, CheckCircle2, Clock, Eye, Mail, FileKey } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy | Mother Glory Institutions",
+  title: "Privacy Policy | Mother Glory Coaching & Tutorial Centre",
   description:
-    "Learn how Mother Glory Institutions collects, protects, uses, and safeguards personal data for students, parents, and website visitors.",
+    "Learn how Mother Glory Coaching & Tutorial Centre collects, protects, uses, and safeguards personal data for students, parents, and website visitors.",
   keywords: [
+    "Mother Glory Coaching & Tutorial Centre Privacy Policy",
     "Mother Glory Privacy Policy",
     "Student Data Protection",
     "Educational Privacy Policy",
@@ -19,17 +20,17 @@ export const metadata: Metadata = {
     canonical: "/privacy-policy",
   },
   openGraph: {
-    title: "Privacy Policy | Mother Glory Institutions",
+    title: "Privacy Policy | Mother Glory Coaching & Tutorial Centre",
     description:
-      "Learn how Mother Glory safeguards student, parent, and institutional data privacy.",
+      "Learn how Mother Glory Coaching & Tutorial Centre safeguards student, parent, and institutional data privacy.",
     url: "https://motherglory.edu/privacy-policy",
-    siteName: "Mother Glory",
+    siteName: "Mother Glory Coaching & Tutorial Centre",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Privacy Policy | Mother Glory Institutions",
-    description: "Official Privacy Policy and Data Security Commitment for Mother Glory.",
+    title: "Privacy Policy | Mother Glory Coaching & Tutorial Centre",
+    description: "Official Privacy Policy and Data Security Commitment for Mother Glory Coaching & Tutorial Centre.",
   },
 };
 
@@ -60,12 +61,12 @@ export default function PrivacyPolicyPage() {
     "@type": "WebPage",
     name: "Privacy Policy",
     description:
-      "Privacy Policy for Mother Glory Educational Institution.",
+      "Privacy Policy for Mother Glory Coaching & Tutorial Centre.",
     url: "https://motherglory.edu/privacy-policy",
     dateModified: "2026-07-25",
     publisher: {
       "@type": "EducationalOrganization",
-      name: "Mother Glory",
+      name: "Mother Glory Coaching & Tutorial Centre",
       url: "https://motherglory.edu",
     },
   };
