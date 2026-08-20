@@ -119,22 +119,22 @@ export default function GallerySection() {
   };
 
   return (
-    <section id="gallery" className="py-24 relative overflow-hidden bg-[#060a12] text-white">
+    <section id="gallery" className="py-10 sm:py-16 md:py-24 relative overflow-hidden bg-[#060a12] text-white">
       {/* Background Subtle Gradient Glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#122452]/30 rounded-full blur-[140px] pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-6 sm:space-y-8 md:space-y-10">
 
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-4">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-lg bg-[#122452] text-white text-xs font-semibold uppercase tracking-wider border border-white/20 shadow-md">
+        <div className="text-center max-w-3xl mx-auto space-y-3 sm:space-y-4">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-lg bg-[#122452] text-white text-xs font-semibold uppercase tracking-wider border border-white/20 shadow-md">
             <Sparkles className="w-3.5 h-3.5 text-white" />
             Proven Track Record of Excellence
           </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-sora font-semibold tracking-tight">
+          <h2 className="text-2xl sm:text-4xl lg:text-5xl font-sora font-semibold tracking-tight">
             Explore Mother Glory <span className="text-white">Achievements</span>
           </h2>
-          <p className="text-slate-300 text-base sm:text-lg leading-relaxed font-normal">
+          <p className="text-slate-300 text-sm sm:text-lg leading-relaxed font-normal">
             A visual showcase of our outstanding NEET toppers, government medical college admissions, and 16+ years of historic ranks.
           </p>
         </div>
@@ -142,21 +142,21 @@ export default function GallerySection() {
         {/* Infinite Carousel Showcase */}
         <div className="relative">
           {/* Main Carousel Viewport */}
-          <div className="overflow-hidden py-6" ref={emblaRef}>
+          <div className="overflow-hidden py-3 sm:py-6" ref={emblaRef}>
             <div className="flex touch-pan-y items-center">
               {galleryData.map((item, index) => {
                 const isActive = activeSlideIndex === index;
                 return (
                   <div
                     key={item.id}
-                    className={`flex-[0_0_88%] sm:flex-[0_0_75%] md:flex-[0_0_60%] lg:flex-[0_0_50%] min-w-0 px-3 sm:px-5 transition-all duration-700 ease-out transform ${isActive
+                    className={`flex-[0_0_92%] sm:flex-[0_0_75%] md:flex-[0_0_60%] lg:flex-[0_0_50%] min-w-0 px-2 sm:px-5 transition-all duration-700 ease-out transform ${isActive
                         ? "scale-100 opacity-100 z-20"
-                        : "scale-85 opacity-35 hover:opacity-75 blur-[0.5px]"
+                        : "scale-90 opacity-40 hover:opacity-75 blur-[0.5px]"
                       }`}
                   >
                     <div
                       onClick={() => setLightboxImage(item)}
-                      className={`relative h-[380px] sm:h-[460px] md:h-[520px] min-h-[380px] sm:min-h-[460px] md:min-h-[520px] w-full rounded-2xl overflow-hidden group/slide cursor-pointer transition-all duration-500 shadow-2xl ${isActive
+                      className={`relative h-[250px] sm:h-[380px] md:h-[520px] min-h-[250px] sm:min-h-[380px] md:min-h-[520px] w-full rounded-xl sm:rounded-2xl overflow-hidden group/slide cursor-pointer transition-all duration-500 shadow-xl ${isActive
                           ? "border-2 border-blue-500/70 shadow-[0_15px_40px_rgba(18,36,82,0.9)] ring-1 ring-white/30"
                           : "border border-slate-800/80"
                         }`}
@@ -171,11 +171,11 @@ export default function GallerySection() {
                       />
 
                       {/* Floating Full View Badge */}
-                      <div className="absolute top-4 right-4 z-10">
+                      <div className="absolute top-3 right-3 sm:top-4 sm:right-4 z-10">
                         <div
-                          className="px-3.5 py-2 rounded-xl bg-[#122452]/85 text-white border border-white/20 font-medium text-xs shadow-xl backdrop-blur-md group-hover/slide:scale-105 transition-transform flex items-center gap-2"
+                          className="px-2.5 py-1.5 sm:px-3.5 sm:py-2 rounded-lg sm:rounded-xl bg-[#122452]/85 text-white border border-white/20 font-medium text-[11px] sm:text-xs shadow-lg backdrop-blur-md group-hover/slide:scale-105 transition-transform flex items-center gap-1.5"
                         >
-                          <Maximize2 className="w-3.5 h-3.5 text-white" />
+                          <Maximize2 className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-white" />
                           <span>Full View</span>
                         </div>
                       </div>

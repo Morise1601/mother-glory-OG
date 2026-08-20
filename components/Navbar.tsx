@@ -74,21 +74,21 @@ export default function Navbar() {
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled
-        ? "glass-nav py-3 shadow-lg shadow-[#122452]/10 border-b border-[#122452]/15 dark:border-slate-800"
-        : "bg-transparent py-4 sm:py-5"
+        ? "glass-nav py-2 sm:py-3 shadow-lg shadow-[#122452]/10 border-b border-[#122452]/15 dark:border-slate-800"
+        : "bg-transparent py-2.5 sm:py-4"
         }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between gap-4">
+        <div className="flex items-center justify-between gap-3 sm:gap-4">
 
           {/* Logo Container - Perfectly Proportioned */}
           <a
             href="/"
             onClick={(e) => handleNavClick("home", e)}
-            className="flex items-center flex-shrink-0 group focus:outline-none rounded-lg py-1 transition-transform duration-300 hover:scale-105"
+            className="flex items-center flex-shrink-0 group focus:outline-none rounded-lg py-0.5 transition-transform duration-300 hover:scale-105"
             aria-label="Mother Glory Coaching & Tutorial Centre Home"
           >
-            <div className="relative h-20 w-20">
+            <div className="relative h-14 w-14 sm:h-18 sm:w-18 xl:h-20 xl:w-20">
               <Image
                 src="/images/logo_mg.png"
                 alt="Mother Glory Coaching & Tutorial Centre Logo"
@@ -115,7 +115,7 @@ export default function Navbar() {
           </nav>
 
           {/* CTA & Phone Actions - Responsive */}
-          <div className="flex items-center gap-3 sm:gap-4 flex-shrink-0">
+          <div className="flex items-center gap-2.5 sm:gap-4 flex-shrink-0">
             <a
               href="tel:+919842823195"
               className="hidden md:flex items-center gap-2 text-xs lg:text-sm font-normal text-[#122452] dark:text-slate-200 hover:opacity-80 transition-opacity whitespace-nowrap"
@@ -138,7 +138,7 @@ export default function Navbar() {
             {/* Mobile & Tablet Drawer Trigger Button */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="xl:hidden p-2.5 sm:p-3 rounded-lg bg-[#122452] text-white hover:bg-[#1b3260] transition-colors focus:outline-none shadow-md font-medium"
+              className="xl:hidden p-2 sm:p-2.5 rounded-lg bg-[#122452] text-white hover:bg-[#1b3260] transition-colors focus:outline-none shadow-md font-medium"
               aria-label="Toggle navigation menu"
               aria-expanded={mobileMenuOpen}
             >
@@ -151,23 +151,23 @@ export default function Navbar() {
 
       {/* Mobile & Tablet Drawer Menu */}
       {mobileMenuOpen && (
-        <div className="xl:hidden glass-panel border-t border-[#122452]/20 dark:border-slate-800 mt-3 py-6 px-6 shadow-2xl animate-in slide-in-from-top duration-300 rounded-lg">
-          <div className="flex flex-col gap-2.5 max-w-lg mx-auto">
+        <div className="xl:hidden glass-panel border-t border-[#122452]/20 dark:border-slate-800 mt-2 py-4 px-4 sm:px-6 shadow-2xl animate-in slide-in-from-top duration-300 rounded-lg">
+          <div className="flex flex-col gap-1.5 max-w-lg mx-auto">
             {navLinks.map((link) => (
               <a
                 key={link.name}
                 href={`#${link.targetId}`}
                 onClick={(e) => handleNavClick(link.targetId, e)}
-                className="flex items-center justify-between px-4 py-3 rounded-lg text-base font-normal text-[#122452] dark:text-slate-100 hover:bg-[#122452] hover:text-white transition-colors cursor-pointer"
+                className="flex items-center justify-between px-3 py-2 rounded-lg text-sm font-normal text-[#122452] dark:text-slate-100 hover:bg-[#122452] hover:text-white transition-colors cursor-pointer"
               >
                 <span>{link.name}</span>
               </a>
             ))}
-            <div className="pt-4 border-t border-slate-200 dark:border-slate-800 flex flex-col gap-3">
+            <div className="pt-3 border-t border-slate-200 dark:border-slate-800 flex flex-col gap-2">
               <a
                 href="#contact"
                 onClick={(e) => handleNavClick("contact", e)}
-                className="w-full text-center py-3.5 text-base font-medium text-white bg-[#122452] rounded-lg shadow-lg cursor-pointer"
+                className="w-full text-center py-2.5 text-sm font-medium text-white bg-[#122452] rounded-lg shadow-md cursor-pointer"
               >
                 Enroll Now
               </a>

@@ -5,6 +5,7 @@ import FounderSection from "@/components/FounderSection";
 import FeaturesSection from "@/components/FeaturesSection";
 import GallerySection from "@/components/GallerySection";
 import TestimonialSection from "@/components/TestimonialSection";
+import FaqSection from "@/components/FaqSection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 
@@ -22,6 +23,7 @@ export default function Home() {
         <FeaturesSection />
         <GallerySection />
         <TestimonialSection />
+        <FaqSection />
         <ContactSection />
       </main>
 
