@@ -123,20 +123,32 @@ export default function GallerySection() {
       {/* Background Subtle Gradient Glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#122452]/30 rounded-full blur-[140px] pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-6 sm:space-y-8 md:space-y-10">
+      <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-6 sm:space-y-8 md:space-y-10">
 
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-3 sm:space-y-4">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-lg bg-[#122452] text-white text-xs font-semibold uppercase tracking-wider border border-white/20 shadow-md">
-            <Sparkles className="w-3.5 h-3.5 text-white" />
-            Proven Track Record of Excellence
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+          <div className="space-y-3 max-w-2xl text-center md:text-left">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-lg bg-red-600 text-white text-sm font-semibold uppercase tracking-wider border border-amber-400/40 shadow-md">
+              <Sparkles className="w-3.5 h-3.5 text-amber-300" />
+              <span>Proven Track Record of Excellence</span>
+            </div>
+            <h2 className="text-2xl sm:text-4xl lg:text-5xl font-sora font-semibold tracking-tight">
+              Explore Mother Glory <span className="text-amber-400">Achievements</span>
+            </h2>
+            <p className="text-slate-300 text-sm sm:text-base leading-relaxed font-normal">
+              A visual showcase of our outstanding NEET toppers, government medical college admissions, and 16+ years of historic ranks.
+            </p>
           </div>
-          <h2 className="text-2xl sm:text-4xl lg:text-5xl font-sora font-semibold tracking-tight">
-            Explore Mother Glory <span className="text-white">Achievements</span>
-          </h2>
-          <p className="text-slate-300 text-sm sm:text-lg leading-relaxed font-normal">
-            A visual showcase of our outstanding NEET toppers, government medical college admissions, and 16+ years of historic ranks.
-          </p>
+
+          <div className="flex justify-center md:justify-end">
+            <a
+              href="/gallery"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-red-600 to-[#122452] text-white text-sm font-semibold hover:opacity-90 transition-opacity border border-amber-400/30 shadow-lg"
+            >
+              <Trophy className="w-4 h-4 text-amber-300" />
+              <span>Open Full Gallery Page</span>
+            </a>
+          </div>
         </div>
 
         {/* Infinite Carousel Showcase */}
@@ -150,15 +162,15 @@ export default function GallerySection() {
                   <div
                     key={item.id}
                     className={`flex-[0_0_92%] sm:flex-[0_0_75%] md:flex-[0_0_60%] lg:flex-[0_0_50%] min-w-0 px-2 sm:px-5 transition-all duration-700 ease-out transform ${isActive
-                        ? "scale-100 opacity-100 z-20"
-                        : "scale-90 opacity-40 hover:opacity-75 blur-[0.5px]"
+                      ? "scale-100 opacity-100 z-20"
+                      : "scale-90 opacity-40 hover:opacity-75 blur-[0.5px]"
                       }`}
                   >
                     <div
                       onClick={() => setLightboxImage(item)}
                       className={`relative h-[250px] sm:h-[380px] md:h-[520px] min-h-[250px] sm:min-h-[380px] md:min-h-[520px] w-full rounded-xl sm:rounded-2xl overflow-hidden group/slide cursor-pointer transition-all duration-500 shadow-xl ${isActive
-                          ? "border-2 border-blue-500/70 shadow-[0_15px_40px_rgba(18,36,82,0.9)] ring-1 ring-white/30"
-                          : "border border-slate-800/80"
+                        ? "border-2 border-red-500 shadow-[0_15px_40px_rgba(220,38,38,0.4)] ring-2 ring-amber-400/50"
+                        : "border border-slate-800/80"
                         }`}
                     >
                       <Image
@@ -173,9 +185,9 @@ export default function GallerySection() {
                       {/* Floating Full View Badge */}
                       <div className="absolute top-3 right-3 sm:top-4 sm:right-4 z-10">
                         <div
-                          className="px-2.5 py-1.5 sm:px-3.5 sm:py-2 rounded-lg sm:rounded-xl bg-[#122452]/85 text-white border border-white/20 font-medium text-[11px] sm:text-xs shadow-lg backdrop-blur-md group-hover/slide:scale-105 transition-transform flex items-center gap-1.5"
+                          className="px-2.5 py-1.5 sm:px-3.5 sm:py-2 rounded-lg sm:rounded-xl bg-red-600/90 text-white border border-amber-400/40 font-medium text-sm shadow-lg backdrop-blur-md group-hover/slide:scale-105 transition-transform flex items-center gap-1.5"
                         >
-                          <Maximize2 className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-white" />
+                          <Maximize2 className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-amber-300" />
                           <span>Full View</span>
                         </div>
                       </div>
@@ -189,7 +201,7 @@ export default function GallerySection() {
           {/* Navigation Prev Button */}
           <button
             onClick={scrollPrev}
-            className="absolute left-1 sm:left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-xl bg-[#122452] border border-white/20 text-white flex items-center justify-center shadow-2xl hover:bg-[#1b3260] transition-all opacity-95 hover:scale-110 focus:outline-none z-30 backdrop-blur-md"
+            className="absolute left-1 sm:left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-xl bg-slate-900/90 border border-amber-400/30 text-white flex items-center justify-center shadow-2xl hover:bg-red-600 transition-all opacity-95 hover:scale-110 focus:outline-none z-30 backdrop-blur-md"
             aria-label="Previous slide"
           >
             <ChevronLeft className="w-6 h-6 text-white" />
@@ -198,7 +210,7 @@ export default function GallerySection() {
           {/* Navigation Next Button */}
           <button
             onClick={scrollNext}
-            className="absolute right-1 sm:right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-xl bg-[#122452] border border-white/20 text-white flex items-center justify-center shadow-2xl hover:bg-[#1b3260] transition-all opacity-95 hover:scale-110 focus:outline-none z-30 backdrop-blur-md"
+            className="absolute right-1 sm:right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-xl bg-slate-900/90 border border-amber-400/30 text-white flex items-center justify-center shadow-2xl hover:bg-red-600 transition-all opacity-95 hover:scale-110 focus:outline-none z-30 backdrop-blur-md"
             aria-label="Next slide"
           >
             <ChevronRight className="w-6 h-6 text-white" />
@@ -211,11 +223,10 @@ export default function GallerySection() {
             <button
               key={index}
               onClick={() => scrollTo(index)}
-              className={`h-2.5 rounded-full transition-all duration-300 cursor-pointer ${
-                activeSlideIndex === index
+              className={`h-2.5 rounded-full transition-all duration-300 cursor-pointer ${activeSlideIndex === index
                   ? "w-8 bg-[#122452] border border-blue-400/80 shadow-md shadow-blue-500/20"
                   : "w-2.5 bg-slate-700 hover:bg-slate-500"
-              }`}
+                }`}
               aria-label={`Go to slide ${index + 1}`}
             />
           ))}
@@ -235,7 +246,7 @@ export default function GallerySection() {
           >
             {/* Modal Top Header */}
             <div className="absolute top-4 left-4 right-4 z-20 flex items-center justify-between pointer-events-none">
-              <div className="px-3.5 py-1.5 rounded-xl bg-[#122452]/90 text-white text-xs font-semibold border border-white/20 backdrop-blur-md pointer-events-auto">
+              <div className="px-3.5 py-1.5 rounded-xl bg-[#122452]/90 text-white text-sm font-semibold border border-white/20 backdrop-blur-md pointer-events-auto">
                 Full View • Poster {galleryData.findIndex((i) => i.id === lightboxImage.id) + 1} of {galleryData.length}
               </div>
               <button

@@ -8,20 +8,32 @@ export default function FounderSection() {
       <div className="absolute top-1/4 left-10 w-96 h-96 bg-[#122452] rounded-full blur-3xl opacity-70 pointer-events-none" />
       <div className="absolute bottom-10 right-10 w-96 h-96 bg-[#1e3a8a] rounded-full blur-3xl opacity-40 pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
         {/* Section Badge & Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-lg bg-[#122452] text-white text-xs font-medium uppercase tracking-wider border border-white/20 shadow-md">
-            <Sparkles className="w-3.5 h-3.5 text-amber-300" />
-            Leadership &amp; Heritage
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 sm:mb-16">
+          <div className="space-y-3 max-w-2xl text-center md:text-left">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-lg bg-red-600 text-white text-sm font-semibold uppercase tracking-wider border border-amber-400/40 shadow-md">
+              <Sparkles className="w-3.5 h-3.5 text-amber-300" />
+              <span>Leadership &amp; Heritage</span>
+            </div>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-sora font-semibold tracking-tight text-white">
+              The Vision Behind <span className="text-amber-400">Mother Glory</span>
+            </h2>
+            <p className="text-slate-300 text-base sm:text-lg leading-relaxed font-normal">
+              Meet our visionary Founders whose exceptional academic qualifications, dedicated leadership, and moral values laid the cornerstone of our institution.
+            </p>
           </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-sora font-semibold tracking-tight text-white">
-            The Vision Behind <span className="text-white">Mother Glory</span>
-          </h2>
-          <p className="text-slate-300 text-base sm:text-lg leading-relaxed font-normal">
-            Meet our visionary Founders whose exceptional academic qualifications, dedicated leadership, and moral values laid the cornerstone of our institution.
-          </p>
+
+          <div className="flex justify-center md:justify-end">
+            <a
+              href="/founder"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-red-600 to-[#122452] text-white text-sm font-semibold hover:opacity-90 transition-opacity border border-amber-400/30 shadow-lg"
+            >
+              <span>Explore Founder Profiles</span>
+              <Award className="w-4 h-4 text-amber-300" />
+            </a>
+          </div>
         </div>
 
         {/* Founders Showcase Grid (Side-by-Side Cards) */}
@@ -34,7 +46,7 @@ export default function FounderSection() {
               {/* Photo Showcase */}
               <div className="relative h-[380px] sm:h-[440px] w-full rounded-lg overflow-hidden mb-5 bg-[#060a12]">
                 <Image
-                  src="/images/founder-final.jpeg"
+                  src="/images/founder-final.webp"
                   alt="M. Antoine@Prabhu - Founder & Managing Director"
                   fill
                   sizes="(max-width: 768px) 100vw, 50vw"
@@ -44,7 +56,7 @@ export default function FounderSection() {
 
                 {/* Floating Role Badge */}
                 <div className="absolute bottom-4 left-4">
-                  <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-[#122452] text-amber-300 text-xs font-semibold border border-amber-400/40 shadow-xl">
+                  <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-[#122452] text-amber-300 text-sm font-semibold border border-amber-400/40 shadow-xl">
                     <Award className="w-3.5 h-3.5 text-amber-300" />
                     Founder &amp; Managing Director
                   </span>
@@ -57,7 +69,7 @@ export default function FounderSection() {
                   <h3 className="text-2xl font-sora font-semibold text-white tracking-tight">
                     M. Antoine@Prabhu
                   </h3>
-                  <div className="flex items-center gap-1.5 mt-2 text-xs text-sky-300 font-mono font-semibold">
+                  <div className="flex items-center gap-1.5 mt-2 text-sm text-sky-300 font-mono font-semibold">
                     <GraduationCap className="w-4 h-4 text-sky-400 shrink-0" />
                     <span>M.Sc., B.Ed., M.Phil (Maths)</span>
                   </div>
@@ -74,7 +86,7 @@ export default function FounderSection() {
               {/* Photo Showcase */}
               <div className="relative h-[380px] sm:h-[440px] w-full rounded-lg overflow-hidden mb-5 bg-[#060a12]">
                 <Image
-                  src="/images/cofounder-final.png"
+                  src="/images/cofounder-final.webp"
                   alt="Mr. Robert Clyive - Chairman & Managing Trustee"
                   fill
                   sizes="(max-width: 768px) 100vw, 50vw"
@@ -84,7 +96,7 @@ export default function FounderSection() {
 
                 {/* Floating Role Badge */}
                 <div className="absolute bottom-4 left-4">
-                  <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-[#122452] text-amber-300 text-xs font-semibold border border-amber-400/40 shadow-xl">
+                  <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-[#122452] text-amber-300 text-sm font-semibold border border-amber-400/40 shadow-xl">
                     <Award className="w-3.5 h-3.5 text-amber-300" />
                     Chairman &amp; Managing Trustee
                   </span>
@@ -97,7 +109,7 @@ export default function FounderSection() {
                   <h3 className="text-2xl font-sora font-semibold text-white tracking-tight">
                     Mr. Robert Clyive
                   </h3>
-                  <div className="flex items-start gap-1.5 mt-2 text-xs text-sky-300 font-mono font-semibold leading-relaxed">
+                  <div className="flex items-start gap-1.5 mt-2 text-sm text-sky-300 font-mono font-semibold leading-relaxed">
                     <GraduationCap className="w-4 h-4 text-sky-400 shrink-0 mt-0.5" />
                     <span>MSW (Medical &amp; Psychiatry), M.Com., M.A. English, DHRM (Australia)</span>
                   </div>
@@ -118,7 +130,7 @@ export default function FounderSection() {
             </p>
             <div className="pt-4 flex items-center justify-between border-t border-white/20 mt-4">
               <span className="text-sm font-semibold text-white">— M. Antoine@Prabhu &amp; Mr. Robert Clyive</span>
-              <span className="text-xs text-slate-300 font-mono">Founders&apos; Message</span>
+              <span className="text-sm text-slate-300 font-mono">Founders&apos; Message</span>
             </div>
           </div>
         </div>
@@ -151,15 +163,15 @@ export default function FounderSection() {
           <div className="pt-6 grid grid-cols-3 gap-4 border-t border-slate-800 text-center">
             <div>
               <p className="text-2xl sm:text-3xl font-sora font-semibold text-white">16+</p>
-              <p className="text-xs text-slate-400 font-normal">Years of Service</p>
+              <p className="text-sm text-slate-400 font-normal">Years of Service</p>
             </div>
             <div>
               <p className="text-2xl sm:text-3xl font-sora font-semibold text-white">3,000+</p>
-              <p className="text-xs text-slate-400 font-normal">Eligible Students</p>
+              <p className="text-sm text-slate-400 font-normal">Eligible Students</p>
             </div>
             <div>
               <p className="text-2xl sm:text-3xl font-sora font-semibold text-white">1,000+</p>
-              <p className="text-xs text-slate-400 font-normal">Medical &amp; Top College Seats</p>
+              <p className="text-sm text-slate-400 font-normal">Medical &amp; Top College Seats</p>
             </div>
           </div>
         </div>

@@ -1,352 +1,71 @@
-import type { Metadata } from "next";
-import Link from "next/link";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
-import { ShieldCheck, ArrowLeft, FileText, CheckCircle2, Clock, HelpCircle, Lock } from "lucide-react";
+import Header from "@/components/public/Header";
+import Footer from "@/components/public/Footer";
+import { getSiteSettings } from "@/lib/data/settings";
 
-export const metadata: Metadata = {
+export const metadata = {
+  alternates: { canonical: "/terms-and-conditions" },
+  openGraph: { url: "/terms-and-conditions" },
   title: "Terms and Conditions | Mother Glory Coaching & Tutorial Centre",
-  description:
-    "Review the official Terms and Conditions governing academic programs, campus conduct, digital services, and enrollment policies at Mother Glory Coaching & Tutorial Centre.",
-  keywords: [
-    "Mother Glory Coaching & Tutorial Centre Terms and Conditions",
-    "Mother Glory Terms and Conditions",
-    "School Terms of Service",
-    "Academic Policies",
-    "Mother Glory Legal",
-    "Student Code of Conduct",
-  ],
-  alternates: {
-    canonical: "/terms-and-conditions",
-  },
-  openGraph: {
-    title: "Terms and Conditions | Mother Glory Coaching & Tutorial Centre",
-    description:
-      "Official Terms and Conditions for Mother Glory Coaching & Tutorial Centre.",
-    url: "https://motherglory.edu/terms-and-conditions",
-    siteName: "Mother Glory Coaching & Tutorial Centre",
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Terms and Conditions | Mother Glory Coaching & Tutorial Centre",
-    description: "Official legal terms and academic policies for Mother Glory Coaching & Tutorial Centre.",
-  },
+  description: "Terms and conditions governing the use of the Mother Glory Coaching & Tutorial Centre website.",
 };
 
-export default function TermsAndConditionsPage() {
-  const lastUpdated = "July 25, 2026";
-
-  const breadcrumbJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      {
-        "@type": "ListItem",
-        position: 1,
-        name: "Home",
-        item: "https://motherglory.edu",
-      },
-      {
-        "@type": "ListItem",
-        position: 2,
-        name: "Terms and Conditions",
-        item: "https://motherglory.edu/terms-and-conditions",
-      },
-    ],
-  };
-
-  const webPageJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "WebPage",
-    name: "Terms and Conditions",
-    description:
-      "Terms and conditions for Mother Glory Coaching & Tutorial Centre.",
-    url: "https://motherglory.edu/terms-and-conditions",
-    dateModified: "2026-07-25",
-    publisher: {
-      "@type": "EducationalOrganization",
-      name: "Mother Glory Coaching & Tutorial Centre",
-      url: "https://motherglory.edu",
-    },
-  };
+export default async function TermsAndConditionsPage() {
+  const settings = await getSiteSettings();
 
   return (
-    <div className="min-h-screen flex flex-col bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 selection:bg-[#122452]/30 selection:text-amber-400">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageJsonLd) }}
-      />
+    <div className="min-h-screen flex flex-col bg-[#FAF8F3] text-[#172033]">
+      <Header announcement={settings.showAnnouncement ? settings.announcementNotice : undefined} />
 
-      {/* Header Navigation */}
-      <Navbar />
-
-      <main className="flex-grow pt-28 pb-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
-
-        {/* Breadcrumb Navigation */}
-        <nav aria-label="Breadcrumb" className="mb-6">
-          <ol className="flex items-center gap-2 text-xs sm:text-sm text-slate-500 dark:text-slate-400 font-normal">
-            <li>
-              <Link href="/" className="hover:text-[#122452] dark:hover:text-white transition-colors flex items-center gap-1">
-                <ArrowLeft className="w-3.5 h-3.5" />
-                <span>Home</span>
-              </Link>
-            </li>
-            <li>/</li>
-            <li className="text-[#122452] dark:text-white font-medium" aria-current="page">
-              Terms and Conditions
-            </li>
-          </ol>
-        </nav>
-
-        {/* Page Header Banner - Matches Homepage Deep Navy Branding Card */}
-        <header className="rounded-lg p-8 sm:p-12 bg-[#122452] text-white shadow-2xl border border-[#122452] relative overflow-hidden mb-12">
-          <div className="relative z-10 space-y-4">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-lg bg-white/10 text-white text-xs font-normal uppercase tracking-wider border border-white/20">
-              <ShieldCheck className="w-4 h-4 text-white" />
-              <span>Legal Governance &amp; Institutional Policy</span>
-            </div>
-
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-sora font-semibold text-white tracking-tight leading-tight">
-              Terms &amp; Conditions
+      <main className="flex-grow py-12 sm:py-16">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+          <div className="space-y-3">
+            <h1 className="font-serif font-bold text-3xl sm:text-4xl text-[#122452]">
+              Terms & Conditions
             </h1>
-
-            <p className="text-slate-200 text-sm sm:text-base max-w-2xl font-normal leading-relaxed">
-              These Terms and Conditions govern your access to Mother Glory&apos;s educational programs, campus facilities, digital portals, and official admission channels.
+            <p className="text-xs text-[#596579]">
+              Last updated: October 2026 • Mother Glory Coaching & Tutorial Centre
             </p>
-
-            <div className="pt-2 flex flex-wrap items-center gap-4 text-xs text-slate-300">
-              <span className="flex items-center gap-1.5">
-                <Clock className="w-3.5 h-3.5 text-white" />
-                Last Updated: {lastUpdated}
-              </span>
-              <span>•</span>
-              <span className="flex items-center gap-1.5">
-                <Lock className="w-3.5 h-3.5 text-emerald-300" />
-                Official Campus Policy
-              </span>
-            </div>
           </div>
-        </header>
 
-        {/* Legal Document Content */}
-        <article className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-
-          {/* Quick Table of Contents Sticky Bar */}
-          <aside className="lg:col-span-1 hidden lg:block">
-            <div className="sticky top-28 space-y-3 bg-white dark:bg-slate-900 p-5 rounded-lg border border-[#122452]/15 dark:border-slate-800 shadow-md">
-              <h3 className="text-xs font-sora font-semibold text-[#122452] dark:text-white uppercase tracking-wider mb-2 flex items-center gap-2">
-                <FileText className="w-4 h-4 text-[#122452] dark:text-blue-300" />
-                On This Page
-              </h3>
-              <nav aria-label="Table of contents">
-                <ul className="space-y-2 text-xs text-slate-600 dark:text-slate-300 font-normal">
-                  <li>
-                    <a href="#acceptance" className="hover:text-[#122452] dark:hover:text-white transition-colors block py-1">
-                      1. Acceptance of Terms
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#code-of-conduct" className="hover:text-[#122452] dark:hover:text-white transition-colors block py-1">
-                      2. Code of Conduct
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#admissions" className="hover:text-[#122452] dark:hover:text-white transition-colors block py-1">
-                      3. Admission &amp; Fees
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#intellectual-property" className="hover:text-[#122452] dark:hover:text-white transition-colors block py-1">
-                      4. Intellectual Property
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#digital-portals" className="hover:text-[#122452] dark:hover:text-white transition-colors block py-1">
-                      5. Digital Usage &amp; Portals
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#liability" className="hover:text-[#122452] dark:hover:text-white transition-colors block py-1">
-                      6. Limitation of Liability
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#governance" className="hover:text-[#122452] dark:hover:text-white transition-colors block py-1">
-                      7. Governance &amp; Contact
-                    </a>
-                  </li>
-                </ul>
-              </nav>
-            </div>
-          </aside>
-
-          {/* Detailed Legal Sections */}
-          <div className="lg:col-span-3 space-y-8 text-slate-600 dark:text-slate-300 font-normal text-sm sm:text-base leading-relaxed">
-
-            {/* Section 1 */}
-            <section
-              id="acceptance"
-              className="bg-white dark:bg-slate-900 p-6 sm:p-8 rounded-lg border border-[#122452]/15 dark:border-slate-800 shadow-md space-y-4 transition-all duration-300 hover:border-[#122452]"
-            >
-              <h2 className="text-xl sm:text-2xl font-sora font-semibold text-[#122452] dark:text-white flex items-center gap-3 border-b border-slate-200 dark:border-slate-800 pb-3">
-                <span className="w-8 h-8 rounded-lg bg-[#122452] text-white flex items-center justify-center text-xs font-mono font-semibold">
-                  01
-                </span>
-                Acceptance of Terms
-              </h2>
+          <article className="prose prose-slate max-w-none text-xs sm:text-sm text-[#172033] space-y-6 leading-relaxed">
+            <section className="space-y-2">
+              <h2 className="font-serif font-bold text-lg text-[#122452]">1. Acceptance of Terms</h2>
               <p>
-                By enrolling in Mother Glory Educational Institution, accessing our official portal, or participating in campus activities, parents, legal guardians, students, and visitors agree to be bound by these Terms and Conditions.
-              </p>
-              <p>
-                If you do not agree with any portion of these terms, please consult our administrative compliance team prior to completing admission forms or submitting registration agreements.
+                By accessing or browsing this website (motherglory.com), you acknowledge and accept these terms of use. If you do not agree, please discontinue use of this website.
               </p>
             </section>
 
-            {/* Section 2 */}
-            <section
-              id="code-of-conduct"
-              className="bg-white dark:bg-slate-900 p-6 sm:p-8 rounded-lg border border-[#122452]/15 dark:border-slate-800 shadow-md space-y-4 transition-all duration-300 hover:border-[#122452]"
-            >
-              <h2 className="text-xl sm:text-2xl font-sora font-semibold text-[#122452] dark:text-white flex items-center gap-3 border-b border-slate-200 dark:border-slate-800 pb-3">
-                <span className="w-8 h-8 rounded-lg bg-[#122452] text-white flex items-center justify-center text-xs font-mono font-semibold">
-                  02
-                </span>
-                Campus Code of Conduct
-              </h2>
+            <section className="space-y-2">
+              <h2 className="font-serif font-bold text-lg text-[#122452]">2. Educational Guidance & No Admission Guarantee</h2>
               <p>
-                Mother Glory maintains a strict policy regarding respectful, inclusive, and safe learning environments.
-              </p>
-              <ul className="space-y-2.5 pl-5 list-disc text-slate-600 dark:text-slate-300">
-                <li>Zero tolerance for bullying, harassment, academic dishonesty, or discrimination in any form.</li>
-                <li>Care and respect for institutional facilities, STEM &amp; Robotics equipment, and library resources.</li>
-                <li>Compliance with safety protocols during athletic events, lab experiments, and school transportation.</li>
-                <li>Responsible digital citizenship on all school network connections and learning management systems.</li>
-              </ul>
-            </section>
-
-            {/* Section 3 */}
-            <section
-              id="admissions"
-              className="bg-white dark:bg-slate-900 p-6 sm:p-8 rounded-lg border border-[#122452]/15 dark:border-slate-800 shadow-md space-y-4 transition-all duration-300 hover:border-[#122452]"
-            >
-              <h2 className="text-xl sm:text-2xl font-sora font-semibold text-[#122452] dark:text-white flex items-center gap-3 border-b border-slate-200 dark:border-slate-800 pb-3">
-                <span className="w-8 h-8 rounded-lg bg-[#122452] text-white flex items-center justify-center text-xs font-mono font-semibold">
-                  03
-                </span>
-                Admission, Tuition &amp; Fee Policies
-              </h2>
-              <p>
-                All student admissions are subject to availability, eligibility verification, and academic evaluation standards.
-              </p>
-              <div className="bg-slate-50 dark:bg-slate-800/60 p-4 rounded-lg border border-[#122452]/15 dark:border-slate-700 space-y-2.5 text-xs sm:text-sm">
-                <div className="flex items-start gap-2.5 text-slate-700 dark:text-slate-200">
-                  <CheckCircle2 className="w-4 h-4 text-[#122452] dark:text-emerald-400 flex-shrink-0 mt-0.5" />
-                  <span>Tuition schedules must be satisfied according to specified payment timelines.</span>
-                </div>
-                <div className="flex items-start gap-2.5 text-slate-700 dark:text-slate-200">
-                  <CheckCircle2 className="w-4 h-4 text-[#122452] dark:text-emerald-400 flex-shrink-0 mt-0.5" />
-                  <span>Late payments may incur administrative charges or temporary restriction from non-mandatory activities.</span>
-                </div>
-                <div className="flex items-start gap-2.5 text-slate-700 dark:text-slate-200">
-                  <CheckCircle2 className="w-4 h-4 text-[#122452] dark:text-emerald-400 flex-shrink-0 mt-0.5" />
-                  <span>Refund policies apply strictly according to the official Mother Glory Admissions Refund Guideline.</span>
-                </div>
-              </div>
-            </section>
-
-            {/* Section 4 */}
-            <section
-              id="intellectual-property"
-              className="bg-white dark:bg-slate-900 p-6 sm:p-8 rounded-lg border border-[#122452]/15 dark:border-slate-800 shadow-md space-y-4 transition-all duration-300 hover:border-[#122452]"
-            >
-              <h2 className="text-xl sm:text-2xl font-sora font-semibold text-[#122452] dark:text-white flex items-center gap-3 border-b border-slate-200 dark:border-slate-800 pb-3">
-                <span className="w-8 h-8 rounded-lg bg-[#122452] text-white flex items-center justify-center text-xs font-mono font-semibold">
-                  04
-                </span>
-                Intellectual Property Rights
-              </h2>
-              <p>
-                All content published on the Mother Glory portal—including curriculum modules, logos, branding assets, images, text, software, and video materials—is the exclusive property of Mother Glory Educational Institution.
-              </p>
-              <p>
-                Unauthorized reproduction, distribution, or commercial exploitation of institutional materials without prior written consent is strictly prohibited.
+                Mother Glory Coaching & Tutorial Centre provides tutorial guidance, study materials, and examination preparatory test series for competitive medical entrance examinations (NEET UG). While our instructional programs are designed to optimize academic capability, participation in any program does not constitute an explicit or implied guarantee of qualifying marks, ranks, or medical college admission.
               </p>
             </section>
 
-            {/* Section 5 */}
-            <section
-              id="digital-portals"
-              className="bg-white dark:bg-slate-900 p-6 sm:p-8 rounded-lg border border-[#122452]/15 dark:border-slate-800 shadow-md space-y-4 transition-all duration-300 hover:border-[#122452]"
-            >
-              <h2 className="text-xl sm:text-2xl font-sora font-semibold text-[#122452] dark:text-white flex items-center gap-3 border-b border-slate-200 dark:border-slate-800 pb-3">
-                <span className="w-8 h-8 rounded-lg bg-[#122452] text-white flex items-center justify-center text-xs font-mono font-semibold">
-                  05
-                </span>
-                Digital Portals &amp; System Usage
-              </h2>
+            <section className="space-y-2">
+              <h2 className="font-serif font-bold text-lg text-[#122452]">3. Intellectual Property</h2>
               <p>
-                Users are granted a limited, non-transferable license to access digital resources and parent/student portals solely for academic and communication purposes.
-              </p>
-              <p>
-                You agree not to attempt unauthorized access to school servers, alter records, or bypass security features.
+                All institutional logos, seal artwork, study materials, mock question sets, achievement posters, photographs, and written content published on this website are the proprietary property of Mother Glory Coaching & Tutorial Centre. Unauthorized reproduction, distribution, or commercial exploitation is prohibited.
               </p>
             </section>
 
-            {/* Section 6 */}
-            <section
-              id="liability"
-              className="bg-white dark:bg-slate-900 p-6 sm:p-8 rounded-lg border border-[#122452]/15 dark:border-slate-800 shadow-md space-y-4 transition-all duration-300 hover:border-[#122452]"
-            >
-              <h2 className="text-xl sm:text-2xl font-sora font-semibold text-[#122452] dark:text-white flex items-center gap-3 border-b border-slate-200 dark:border-slate-800 pb-3">
-                <span className="w-8 h-8 rounded-lg bg-[#122452] text-white flex items-center justify-center text-xs font-mono font-semibold">
-                  06
-                </span>
-                Limitation of Liability
-              </h2>
+            <section className="space-y-2">
+              <h2 className="font-serif font-bold text-lg text-[#122452]">4. Accuracy of Information</h2>
               <p>
-                While Mother Glory exercises high standards of care, the institution is not liable for indirect, incidental, or consequential damages resulting from unexpected technical outages or third-party service interruptions.
+                We strive to keep program descriptions, course eligibility, and campus details accurate. Batch schedules, faculty rosters, and fee structures are subject to institutional confirmation at the time of formal admission.
               </p>
             </section>
 
-            {/* Section 7 */}
-            <section
-              id="governance"
-              className="bg-white dark:bg-slate-900 p-6 sm:p-8 rounded-lg border border-[#122452]/15 dark:border-slate-800 shadow-md space-y-4 transition-all duration-300 hover:border-[#122452]"
-            >
-              <h2 className="text-xl sm:text-2xl font-sora font-semibold text-[#122452] dark:text-white flex items-center gap-3 border-b border-slate-200 dark:border-slate-800 pb-3">
-                <span className="w-8 h-8 rounded-lg bg-[#122452] text-white flex items-center justify-center text-xs font-mono font-semibold">
-                  07
-                </span>
-                Governing Law &amp; Contact Information
-              </h2>
+            <section className="space-y-2">
+              <h2 className="font-serif font-bold text-lg text-[#122452]">5. Governing Jurisdiction</h2>
               <p>
-                These terms are governed by the educational regulations and laws of the jurisdiction in which Mother Glory operates.
+                These terms are governed by and construed in accordance with the laws applicable in the Union Territory of Puducherry, India. Any disputes arising out of the use of this website shall be subject to the exclusive jurisdiction of the competent courts in Puducherry.
               </p>
-              <div className="pt-4 border-t border-slate-200 dark:border-slate-800 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-                <div className="space-y-1">
-                  <p className="text-xs font-sora font-semibold text-[#122452] dark:text-white uppercase">Questions regarding legal terms?</p>
-                  <p className="text-xs text-slate-500 dark:text-slate-400">Reach out to our administrative compliance team.</p>
-                </div>
-                <Link
-                  href="/#contact"
-                  className="inline-flex items-center gap-2 px-5 py-2.5 text-xs sm:text-sm font-medium text-white bg-[#122452] hover:bg-[#1b3260] rounded-lg shadow-md transition-all border border-white/20"
-                >
-                  <HelpCircle className="w-4 h-4 text-white" />
-                  <span>Contact Administration</span>
-                </Link>
-              </div>
             </section>
-
-          </div>
-        </article>
+          </article>
+        </div>
       </main>
 
-      {/* Footer Navigation */}
       <Footer />
     </div>
   );

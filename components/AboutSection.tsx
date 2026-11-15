@@ -35,19 +35,31 @@ const familyReasons = [
 export default function AboutSection() {
   return (
     <section id="about" className="py-10 sm:py-16 md:py-24 relative overflow-hidden bg-slate-50 dark:bg-slate-950">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-8 sm:space-y-12 md:space-y-16">
+      <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-8 sm:space-y-12 md:space-y-16">
 
         {/* Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-3 sm:space-y-4">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-lg bg-[#122452] text-white text-xs font-normal uppercase tracking-wider border border-[#122452]">
-            About Mother Glory Coaching &amp; Tutorial Centre
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+          <div className="space-y-3 max-w-2xl text-center md:text-left">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-lg bg-red-600 text-white text-sm font-semibold uppercase tracking-wider border border-amber-400/40 shadow-md">
+              <span>About Mother Glory Coaching &amp; Tutorial Centre</span>
+            </div>
+            <h2 className="text-2xl sm:text-4xl lg:text-5xl font-sora font-semibold text-[#122452] dark:text-white tracking-tight">
+              Pioneering Medical Entrance <span className="text-red-600 dark:text-red-400">Coaching Excellence</span>
+            </h2>
+            <p className="text-slate-700 dark:text-slate-300 text-sm sm:text-base leading-relaxed font-normal">
+              Mother Glory Coaching &amp; Tutorial Centre is the premier medical entrance coaching institute in Puducherry &amp; Karaikal. Over 16+ years, 3,000+ students cleared eligibility marks and 1,000+ students secured MBBS and BDS seats in top government medical colleges.
+            </p>
           </div>
-          <h2 className="text-2xl sm:text-4xl lg:text-5xl font-sora font-semibold text-[#122452] dark:text-white tracking-tight">
-            Pioneering Medical Entrance <span className="text-[#122452] dark:text-blue-300">Coaching Excellence</span>
-          </h2>
-          <p className="text-slate-700 dark:text-slate-300 text-sm sm:text-lg leading-relaxed font-normal">
-            Mother Glory Coaching &amp; Tutorial Centre is the best and leading institute in Puducherry &amp; Karaikal. We are the pioneer institution training students to face all competitive entrance exams. In 16 years, 3,000+ students cleared eligibility marks and 1,000+ students secured medical courses in leading institutions like JIPMER, AIIMS, and CMC.
-          </p>
+
+          <div className="flex justify-center md:justify-end">
+            <a
+              href="/about"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#122452] text-white text-sm font-semibold hover:bg-red-600 transition-colors border border-amber-400/30 shadow-md"
+            >
+              <span>Explore Our Full Story</span>
+              <Award className="w-4 h-4 text-amber-300" />
+            </a>
+          </div>
         </div>
 
         {/* Pillars Grid */}
@@ -65,7 +77,7 @@ export default function AboutSection() {
                 <h3 className="text-lg sm:text-xl font-sora font-semibold text-[#122452] dark:text-white mb-2 sm:mb-3">
                   {pillar.title}
                 </h3>
-                <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-normal">
+                <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-normal">
                   {pillar.description}
                 </p>
               </div>
@@ -81,7 +93,7 @@ export default function AboutSection() {
               <h3 className="text-xl sm:text-3xl font-sora font-semibold text-white">
                 Why Aspirants Choose Mother Glory
               </h3>
-              <p className="text-slate-200 text-xs sm:text-base leading-relaxed font-normal">
+              <p className="text-slate-200 text-sm sm:text-base leading-relaxed font-normal">
                 With God&apos;s grace and glorious Mother Mary&apos;s blessings, we combine moral values with result-oriented coaching, guiding medical aspirants from foundational concepts to top rank achievements.
               </p>
             </div>
@@ -90,7 +102,7 @@ export default function AboutSection() {
               {familyReasons.map((item, index) => (
                 <div key={index} className="flex items-center gap-2.5 p-2.5 sm:p-3 rounded-lg bg-white/10 border border-white/10">
                   <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5 text-white flex-shrink-0" />
-                  <span className="text-xs sm:text-sm font-normal text-white">
+                  <span className="text-sm font-normal text-white">
                     {item}
                   </span>
                 </div>
