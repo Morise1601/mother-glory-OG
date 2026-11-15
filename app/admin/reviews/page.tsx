@@ -146,7 +146,15 @@ export default function AdminReviewsPage() {
               </div>
 
               {/* Server Status Indicator */}
-              <button type="button" onClick={handleSave} disabled={saving || !settingsUpdatedAt} className="px-4 py-2 rounded-[8px] bg-[#B68A35] text-white text-xs font-semibold disabled:opacity-60 cursor-pointer">{saving ? 'Saving...' : 'Save Place IDs'}</button>
+              <button
+                type="button"
+                onClick={handleSave}
+                disabled={saving || !settingsUpdatedAt}
+                className="px-4 py-2 rounded-[8px] bg-[#B68A35] hover:bg-[#9c7328] text-white text-xs font-semibold disabled:opacity-60 cursor-pointer flex items-center gap-1.5 transition-colors"
+              >
+                {saving && <Loader2 className="w-3.5 h-3.5 animate-spin" />}
+                <span>{saving ? "Saving..." : "Save Place IDs"}</span>
+              </button>
               {configMessage && <p className="text-xs text-[#596579]" role="status">{configMessage}</p>}
               <p className="text-[11px] text-[#596579]">Connection tests use the entered Place ID immediately and bypass the hourly review cache. Save to apply it publicly.</p>
               <div className="p-4 rounded-[8px] bg-[#FAF8F3] border border-[#DFE3EA] flex items-center justify-between">

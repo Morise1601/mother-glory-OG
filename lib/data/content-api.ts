@@ -28,9 +28,21 @@ export function contentJson(value: unknown) {
 export async function contentMutationResult(value: Record<string, unknown>, actor: StaffActor, module: string, action: string, entityId?: string) {
   const warnings: string[] = [];
   try {
-    await logAuditAction({ actorId: actor.id, actorName: actor.name, module, action,
-      entityType: module, entityId, summary: `Updated website ${module}: ${action}.` });
-  } catch { warnings.push('Changes were saved, but the audit event could not be recorded.'); }
+    await Promise.race([
+      logAuditAction({
+        actorId: actor.id,
+        actorName: actor.name,
+        module,
+        action,
+        entityType: module,
+        entityId,
+        summary: `Updated website ${module}: ${action}.`,
+      }),
+      new Promise((_, reject) => setTimeout(() => reject(new Error('Audit log timeout')), 2500)),
+    ]);
+  } catch {
+    warnings.push('Changes were saved, but the audit event could not be recorded.');
+  }
   try { refreshPublicContent(); }
   catch { warnings.push('Changes were saved. Reload the public page to see the latest content.'); }
   return contentJson({ ...value, ...(warnings.length ? { warning: warnings.join(' ') } : {}) });

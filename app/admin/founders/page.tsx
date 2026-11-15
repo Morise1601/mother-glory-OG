@@ -6,9 +6,10 @@ import { adminRequest } from "@/lib/admin/api";
 import Image from "next/image";
 import AdminPageWrapper from "@/components/admin/AdminPageWrapper";
 import ImageAssetField from "@/components/admin/ImageAssetField";
+import PageLoader from "@/components/ui/PageLoader";
 
 import { Founder } from "@/types/content.types";
-import { Save, CheckCircle2 } from "lucide-react";
+import { Save, CheckCircle2, Loader2 } from "lucide-react";
 
 export default function AdminFoundersPage() {
   const { data: founders, setData: setFounders, error, setError, loaded } = useAdminData<Founder[]>("/api/admin/founders", "founders", []);
@@ -39,13 +40,16 @@ export default function AdminFoundersPage() {
           type="button"
           onClick={handleSave}
           disabled={saving || !loaded}
-          className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-[#B68A35] hover:bg-[#9c7328] text-white text-xs sm:text-sm font-semibold shadow-xs transition-colors cursor-pointer"
+          className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-[#B68A35] hover:bg-[#9c7328] text-white text-xs sm:text-sm font-semibold shadow-xs transition-colors cursor-pointer disabled:opacity-50"
         >
-          <Save className="w-4 h-4" />
-          <span>Save Changes</span>
+          {saving ? <Loader2 className="w-4 h-4 animate-spin" /> : <Save className="w-4 h-4" />}
+          <span>{saving ? "Saving..." : "Save Changes"}</span>
         </button>
       }
     >
+      {!loaded ? (
+        <PageLoader fullScreen={false} size={200} />
+      ) : (
       <div className="space-y-6">
         {error && <p role="alert" className="p-4 rounded-xl bg-red-50 text-red-800 text-sm">{error}</p>}
         {savedSuccess && (
@@ -166,6 +170,7 @@ export default function AdminFoundersPage() {
           ))}
         </div>
       </div>
+      )}
     </AdminPageWrapper>
   );
 }

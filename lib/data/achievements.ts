@@ -39,8 +39,11 @@ export async function getAchievementById(id: string): Promise<Achievement | unde
 export async function createAchievement(data: Omit<Achievement, 'id' | 'createdAt' | 'updatedAt' | 'version'>): Promise<Achievement> {
   let created!: Achievement;
   await updateContent<Achievement[]>('achievements', [], current => {
-    if (current.some(a => a.slug === data.slug)) throw new ContentError('An achievement with this slug already exists.');
-    created = { ...data, id: randomUUID(), version: 1, createdAt: new Date().toISOString(), updatedAt: new Date().toISOString() };
+    let finalSlug = data.slug;
+    if (current.some(a => a.slug === finalSlug)) {
+      finalSlug = `${finalSlug}-${Date.now().toString(36).slice(-4)}`;
+    }
+    created = { ...data, slug: finalSlug, id: randomUUID(), version: 1, createdAt: new Date().toISOString(), updatedAt: new Date().toISOString() };
     return [created, ...current];
   });
   return created;
@@ -52,8 +55,11 @@ export async function updateAchievement(id: string, updates: Partial<Achievement
     const existing = current.find(a => a.id === id);
     if (!existing) throw new ContentError('Achievement not found', 404);
     assertVersion(existing, updates.version);
-    if (updates.slug && current.some(a => a.id !== id && a.slug === updates.slug)) throw new ContentError('An achievement with this slug already exists.');
-    updated = { ...existing, ...updates, id, createdAt: existing.createdAt, version: existing.version + 1, updatedAt: new Date().toISOString() };
+    let finalSlug = updates.slug;
+    if (finalSlug && current.some(a => a.id !== id && a.slug === finalSlug)) {
+      finalSlug = `${finalSlug}-${Date.now().toString(36).slice(-4)}`;
+    }
+    updated = { ...existing, ...updates, ...(finalSlug ? { slug: finalSlug } : {}), id, createdAt: existing.createdAt, version: existing.version + 1, updatedAt: new Date().toISOString() };
     return current.map(a => a.id === id ? updated : a);
   });
   return updated;

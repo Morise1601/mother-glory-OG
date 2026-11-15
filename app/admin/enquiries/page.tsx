@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from 'react';
 import AdminPageWrapper from '@/components/admin/AdminPageWrapper';
+import PageLoader from '@/components/ui/PageLoader';
+import { Loader2 } from 'lucide-react';
 import type { Enquiry, EnquiryStatus } from '@/types/content.types';
 
 export default function AdminEnquiriesPage() {
@@ -53,7 +55,7 @@ export default function AdminEnquiriesPage() {
     <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
       <div className={`${selected ? 'lg:col-span-7' : 'lg:col-span-12'} bg-white rounded-2xl border border-[#DFE3EA] p-5 overflow-x-auto`}>
         <h2 className="font-serif font-bold text-lg text-[#122452] mb-3">Student & Parent Enquiries ({visible.length})</h2>
-        {loading ? <p role="status">Loading enquiries…</p> : visible.length === 0 ? <p className="text-sm text-slate-600">No enquiries available.</p> : <table className="w-full text-left text-sm">
+        {loading ? <PageLoader fullScreen={false} size={180} /> : visible.length === 0 ? <p className="text-sm text-slate-600">No enquiries available.</p> : <table className="w-full text-left text-sm">
           <thead><tr className="bg-[#FAF8F3]"><th className="p-3">Candidate</th><th className="p-3">Program & Campus</th><th className="p-3">Status</th><th className="p-3">Assigned to</th></tr></thead>
           <tbody>{visible.map(item => <tr key={item.id} className="border-t border-[#DFE3EA]">
             <td className="p-3"><button onClick={() => setSelectedId(item.id)} className="font-semibold text-[#122452] underline">{item.name}</button><p className="text-xs">{item.phone}</p></td>
@@ -67,7 +69,7 @@ export default function AdminEnquiriesPage() {
         <label className="block text-sm font-semibold">Status<select disabled={busy || !canUpdate} value={selected.status} onChange={event => void update({ action: 'status', id: selected.id, status: event.target.value as EnquiryStatus })} className={fieldClass}>{['new', 'contacted', 'in_progress', 'closed'].map(status => <option key={status} value={status}>{status.replace('_', ' ')}</option>)}</select></label>
         {canAssign && <label className="block text-sm font-semibold">Assign to staff<select disabled={busy} value={selected.assignedTo || ''} onChange={event => void update({ action: 'assign', id: selected.id, staffId: event.target.value })} className={fieldClass}><option value="" disabled>Choose staff member</option>{staff.map(member => <option key={member.id} value={member.id}>{member.name}</option>)}</select></label>}
         <div className="space-y-3"><h4 className="font-semibold text-sm">Counselling notes</h4>{selected.notes?.map(note => <div key={note.id} className="p-3 rounded-xl bg-[#FAF8F3] text-sm"><div className="flex justify-between text-xs text-slate-600"><span>{note.staffName}</span><time>{new Date(note.createdAt).toLocaleString()}</time></div><p className="whitespace-pre-wrap">{note.note}</p></div>)}</div>
-        {canUpdate && <form onSubmit={event => { event.preventDefault(); void update({ action: 'note', id: selected.id, note: newNote }); }} className="space-y-2"><textarea aria-label="Private counselling note" maxLength={2000} required value={newNote} onChange={event => setNewNote(event.target.value)} className={fieldClass} /><button disabled={busy || !newNote.trim()} className="px-4 py-2 bg-[#122452] text-white rounded-xl disabled:opacity-50">{busy ? 'Saving…' : 'Add note'}</button></form>}
+        {canUpdate && <form onSubmit={event => { event.preventDefault(); void update({ action: 'note', id: selected.id, note: newNote }); }} className="space-y-2"><textarea aria-label="Private counselling note" maxLength={2000} required value={newNote} onChange={event => setNewNote(event.target.value)} className={fieldClass} /><button disabled={busy || !newNote.trim()} className="px-4 py-2 bg-[#122452] text-white rounded-xl disabled:opacity-50 flex items-center gap-1.5 cursor-pointer">{busy && <Loader2 className="w-4 h-4 animate-spin" />}<span>{busy ? 'Saving…' : 'Add note'}</span></button></form>}
       </div>}
     </div>
   </AdminPageWrapper>;

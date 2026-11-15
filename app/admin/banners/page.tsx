@@ -5,6 +5,7 @@ import Image from "next/image";
 import AdminPageWrapper from "@/components/admin/AdminPageWrapper";
 import ConfirmDialog from "@/components/admin/ConfirmDialog";
 import ImageCropperModal from "@/components/admin/ImageCropperModal";
+import PageLoader from "@/components/ui/PageLoader";
 import { adminRequest, reportAdminWarning } from "@/lib/admin/api";
 import { BannerSlide } from "@/types/content.types";
 import {
@@ -22,7 +23,8 @@ import {
   Link as LinkIcon,
   Crop as CropIcon,
   Layers,
-  } from "lucide-react";
+  Loader2,
+} from "lucide-react";
 
 export default function AdminBannersPage() {
   const [banners, setBanners] = useState<BannerSlide[]>([]);
@@ -273,7 +275,7 @@ export default function AdminBannersPage() {
             disabled={isSaving || !loaded}
             className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-[#B68A35] hover:bg-[#9c7328] text-white text-xs sm:text-sm font-semibold shadow-xs transition-colors cursor-pointer disabled:opacity-50"
           >
-            <Save className="w-4 h-4" />
+            {isSaving ? <Loader2 className="w-4 h-4 animate-spin" /> : <Save className="w-4 h-4" />}
             <span>{isSaving ? "Saving..." : "Save Changes"}</span>
           </button>
         </div>
@@ -293,6 +295,9 @@ export default function AdminBannersPage() {
         </div>
       )}
 
+      {!loaded ? (
+        <PageLoader fullScreen={false} size={200} />
+      ) : (
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         {/* Left: Reorderable Banner Slides List */}
         <div className="lg:col-span-5 bg-white rounded-2xl border border-[#DFE3EA] p-5 shadow-xs space-y-4">
@@ -786,6 +791,7 @@ export default function AdminBannersPage() {
           )}
         </div>
       </div>
+      )}
 
       {/* Theme-styled Custom Confirmation Dialog */}
       <ConfirmDialog

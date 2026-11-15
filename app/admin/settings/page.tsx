@@ -4,9 +4,10 @@ import { useState } from "react";
 import { useAdminData } from "@/components/admin/useAdminData";
 import { adminRequest } from "@/lib/admin/api";
 import AdminPageWrapper from "@/components/admin/AdminPageWrapper";
+import PageLoader from "@/components/ui/PageLoader";
 import { DEFAULT_SETTINGS } from "@/lib/data/content-defaults";
 import { SiteSettings } from "@/types/content.types";
-import { Save, CheckCircle2, Globe, Phone } from "lucide-react";
+import { Save, CheckCircle2, Globe, Phone, Loader2 } from "lucide-react";
 
 export default function AdminSettingsPage() {
   const { data: settings, setData: setSettings, error, setError, loaded } = useAdminData<SiteSettings>("/api/admin/settings", "settings", DEFAULT_SETTINGS);
@@ -31,13 +32,16 @@ export default function AdminSettingsPage() {
           type="button"
           onClick={handleSave}
           disabled={saving || !loaded}
-          className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-[#B68A35] hover:bg-[#9c7328] text-white text-xs sm:text-sm font-semibold shadow-xs transition-colors cursor-pointer"
+          className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-[#B68A35] hover:bg-[#9c7328] text-white text-xs sm:text-sm font-semibold shadow-xs transition-colors cursor-pointer disabled:opacity-50"
         >
-          <Save className="w-4 h-4" />
-          <span>Save Settings</span>
+          {saving ? <Loader2 className="w-4 h-4 animate-spin" /> : <Save className="w-4 h-4" />}
+          <span>{saving ? "Saving..." : "Save Settings"}</span>
         </button>
       }
     >
+      {!loaded ? (
+        <PageLoader fullScreen={false} size={200} />
+      ) : (
       <div className="space-y-6 max-w-4xl">
         {error && <p role="alert" className="p-4 rounded-xl bg-red-50 text-red-800 text-sm">{error}</p>}
         {savedSuccess && (
@@ -169,6 +173,7 @@ export default function AdminSettingsPage() {
           </div>
         </div>
       </div>
+      )}
     </AdminPageWrapper>
   );
 }

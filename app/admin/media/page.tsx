@@ -5,6 +5,7 @@ import Image from "next/image";
 import AdminPageWrapper from "@/components/admin/AdminPageWrapper";
 import ConfirmDialog from "@/components/admin/ConfirmDialog";
 import MediaPreviewModal from "@/components/admin/MediaPreviewModal";
+import PageLoader from "@/components/ui/PageLoader";
 import { MediaAsset, validateMediaUpload } from "@/lib/data/media";
 import {
   Upload,
@@ -13,6 +14,7 @@ import {
   AlertCircle,
   CheckCircle2,
   Lock,
+  Loader2,
 } from "lucide-react";
 
 export default function AdminMediaPage() {
@@ -23,6 +25,7 @@ export default function AdminMediaPage() {
   const [successMsg, setSuccessMsg] = useState<string | null>(null);
   const [isUploading, setIsUploading] = useState(false);
   const [deleteTarget, setDeleteTarget] = useState<MediaAsset | null>(null);
+  const [isDeleting, setIsDeleting] = useState(false);
   const [selectedAssetForPreview, setSelectedAssetForPreview] = useState<MediaAsset | null>(null);
   const [loading, setLoading] = useState(true);
 
@@ -59,6 +62,7 @@ export default function AdminMediaPage() {
 
   const handleConfirmDelete = async () => {
     if (!deleteTarget) return;
+    setIsDeleting(true);
     try {
       const res = await fetch('/api/admin/media', { method: 'DELETE', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ id: deleteTarget.id }) });
       const data = await res.json();
@@ -66,7 +70,11 @@ export default function AdminMediaPage() {
       setMediaList((prev) => prev.filter((m) => m.id !== deleteTarget.id));
       setSuccessMsg(`Asset ${deleteTarget.filename} removed from the library. Its stored file is retained for content safety.${data.auditWarning ? ` ${data.auditWarning}` : ''}`);
       setDeleteTarget(null);
-    } catch (error) { setErrorMsg(error instanceof Error ? error.message : 'Unable to archive this asset.'); }
+    } catch (error) {
+      setErrorMsg(error instanceof Error ? error.message : 'Unable to archive this asset.');
+    } finally {
+      setIsDeleting(false);
+    }
   };
 
   const handleUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -124,7 +132,7 @@ export default function AdminMediaPage() {
         <label className={`inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl text-white text-xs sm:text-sm font-semibold shadow-xs transition-colors cursor-pointer ${
           isUploading ? "bg-slate-400 cursor-not-allowed" : "bg-[#B68A35] hover:bg-[#9c7328]"
         }`}>
-          <Upload className="w-4 h-4" />
+          {isUploading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Upload className="w-4 h-4" />}
           <span>{isUploading ? "Converting & uploading..." : "Upload image or video"}</span>
           <input
             type="file"
@@ -183,8 +191,11 @@ export default function AdminMediaPage() {
         </div>
 
         {/* Media Grid */}
-        {loading && <p className="text-xs text-[#596579]">Loading saved media...</p>}
-        {!loading && !filtered.length && <p className="text-xs text-[#596579]">No uploaded media matches your search.</p>}
+        {loading ? (
+          <PageLoader fullScreen={false} size={200} />
+        ) : !filtered.length ? (
+          <p className="text-xs text-[#596579]">No uploaded media matches your search.</p>
+        ) : (
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
           {filtered.map((asset) => (
             <div
@@ -237,6 +248,7 @@ export default function AdminMediaPage() {
             </div>
           ))}
         </div>
+        )}
       </div>
 
       {/* Asset High-Resolution Preview & Link Modal */}
@@ -264,6 +276,7 @@ export default function AdminMediaPage() {
         confirmLabel="Remove from Library"
         cancelLabel="Cancel"
         variant="danger"
+        isLoading={isDeleting}
         onConfirm={handleConfirmDelete}
         onClose={() => setDeleteTarget(null)}
       />

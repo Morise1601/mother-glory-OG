@@ -2,17 +2,21 @@
 
 import Link from "next/link";
 import AdminPageWrapper from "@/components/admin/AdminPageWrapper";
+import PageLoader from "@/components/ui/PageLoader";
 import { useAdminData } from "@/components/admin/useAdminData";
 import { Program } from "@/types/content.types";
 import { Edit2, MapPin } from "lucide-react";
 
 export default function AdminProgramsPage() {
-  const { data: programs, error } = useAdminData<Program[]>("/api/admin/programs", "programs", []);
+  const { data: programs, error, loaded } = useAdminData<Program[]>("/api/admin/programs", "programs", []);
 
   return (
     <AdminPageWrapper title="Programs & Courses">
       <div className="space-y-6">
         {error && <p role="alert" className="p-4 bg-red-50 text-red-800">{error}</p>}
+        {!loaded ? (
+          <PageLoader fullScreen={false} size={200} />
+        ) : (
         <div className="bg-white rounded-2xl border border-[#DFE3EA] overflow-hidden shadow-xs">
           <div className="p-5 border-b border-[#DFE3EA] flex items-center justify-between">
             <div>
@@ -65,6 +69,7 @@ export default function AdminProgramsPage() {
             ))}
           </div>
         </div>
+        )}
       </div>
     </AdminPageWrapper>
   );

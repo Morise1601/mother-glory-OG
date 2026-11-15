@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { AlertTriangle, Trash2, X, Loader2 } from "lucide-react";
 
 export interface ConfirmDialogProps {
@@ -28,6 +28,17 @@ export default function ConfirmDialog({
 }: ConfirmDialogProps) {
   const modalRef = useRef<HTMLDivElement>(null);
   const confirmButtonRef = useRef<HTMLButtonElement>(null);
+  const [internalLoading, setInternalLoading] = useState(false);
+  const activeLoading = isLoading || internalLoading;
+
+  const handleConfirm = async () => {
+    try {
+      setInternalLoading(true);
+      await onConfirm();
+    } finally {
+      setInternalLoading(false);
+    }
+  };
 
   // Close on Escape & trap focus
   useEffect(() => {
@@ -35,7 +46,7 @@ export default function ConfirmDialog({
 
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
-        if (!isLoading) onClose();
+        if (!activeLoading) onClose();
       }
     };
 
@@ -46,7 +57,7 @@ export default function ConfirmDialog({
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
     };
-  }, [isOpen, isLoading, onClose]);
+  }, [isOpen, activeLoading, onClose]);
 
   if (!isOpen) return null;
 
@@ -63,7 +74,7 @@ export default function ConfirmDialog({
       <div
         className="fixed inset-0 bg-[#0c1836]/65 backdrop-blur-xs transition-opacity duration-200 animate-in fade-in"
         onClick={() => {
-          if (!isLoading) onClose();
+          if (!activeLoading) onClose();
         }}
       />
 
@@ -76,7 +87,7 @@ export default function ConfirmDialog({
         <button
           type="button"
           onClick={onClose}
-          disabled={isLoading}
+          disabled={activeLoading}
           className="absolute top-4 right-4 p-1.5 rounded-lg text-[#596579] hover:text-[#122452] hover:bg-white border border-transparent hover:border-[#DFE3EA] transition-all cursor-pointer disabled:opacity-40"
           aria-label="Close confirmation dialog"
         >
@@ -116,7 +127,7 @@ export default function ConfirmDialog({
           <button
             type="button"
             onClick={onClose}
-            disabled={isLoading}
+            disabled={activeLoading}
             className="px-4 py-2.5 rounded-xl bg-white hover:bg-slate-100 border border-[#DFE3EA] text-xs sm:text-sm font-semibold text-[#122452] shadow-xs transition-colors cursor-pointer disabled:opacity-50"
           >
             {cancelLabel}
@@ -125,14 +136,14 @@ export default function ConfirmDialog({
           <button
             ref={confirmButtonRef}
             type="button"
-            onClick={onConfirm}
-            disabled={isLoading}
+            onClick={handleConfirm}
+            disabled={activeLoading}
             className={`px-5 py-2.5 rounded-xl text-xs sm:text-sm font-semibold text-white shadow-md transition-all flex items-center gap-2 cursor-pointer disabled:opacity-50 ${isDanger
                 ? "bg-[#DC2626] hover:bg-[#B91C1C] hover:shadow-lg focus:ring-2 focus:ring-rose-500 focus:ring-offset-2"
                 : "bg-[#B68A35] hover:bg-[#9c7328] hover:shadow-lg focus:ring-2 focus:ring-[#B68A35] focus:ring-offset-2"
               }`}
           >
-            {isLoading && <Loader2 className="w-4 h-4 animate-spin" />}
+            {activeLoading && <Loader2 className="w-4 h-4 animate-spin" />}
             <span>{confirmLabel}</span>
           </button>
         </div>
