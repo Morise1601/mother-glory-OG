@@ -1,12 +1,16 @@
 import { MetadataRoute } from "next";
+import { getSiteSettings } from "@/lib/data/settings";
+export const dynamic = "force-dynamic";
 
-export default function robots(): MetadataRoute.Robots {
+export default async function robots(): Promise<MetadataRoute.Robots> {
+  const { canonicalOrigin: origin } = await getSiteSettings();
+
   return {
     rules: {
       userAgent: "*",
       allow: "/",
-      disallow: ["/api/"],
+      disallow: ["/api/", "/admin", "/admin/", "/auth/"],
     },
-    sitemap: "https://motherglory.edu/sitemap.xml",
+    sitemap: `${origin}/sitemap.xml`,
   };
 }

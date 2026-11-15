@@ -51,11 +51,11 @@ export default function FaqSection() {
 
   return (
     <section id="faq" className="py-10 sm:py-16 md:py-24 relative overflow-hidden bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-6 sm:space-y-10">
+      <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-6 sm:space-y-10">
 
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto space-y-3">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-lg bg-[#122452] text-white text-xs font-normal uppercase tracking-wider border border-[#122452]">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-lg bg-red-600 text-white text-sm font-semibold uppercase tracking-wider border border-amber-400/40 shadow-md">
             <HelpCircle className="w-3.5 h-3.5 text-amber-300" />
             <span>Frequently Asked Questions</span>
           </div>
@@ -83,18 +83,17 @@ export default function FaqSection() {
                 >
                   <span className="flex-1 leading-snug">{faq.question}</span>
                   <div
-                    className={`p-1.5 rounded-lg shrink-0 transition-all duration-300 ${
-                      isOpen
+                    className={`p-1.5 rounded-lg shrink-0 transition-all duration-300 ${isOpen
                         ? "rotate-180 bg-[#122452] text-white dark:bg-sky-500 dark:text-white shadow-sm"
                         : "bg-[#122452]/10 text-[#122452] dark:bg-slate-800 dark:text-slate-200"
-                    }`}
+                      }`}
                   >
                     <ChevronDown className="w-4 h-4 sm:w-5 sm:h-5 text-current stroke-[2.5]" />
                   </div>
                 </button>
 
                 {isOpen && (
-                  <div className="px-4 sm:px-5 pb-4 sm:pb-5 pt-1 text-slate-700 dark:text-slate-300 text-xs sm:text-sm leading-relaxed border-t border-slate-100 dark:border-slate-800/60 animate-in fade-in duration-200">
+                  <div className="px-4 sm:px-5 pb-4 sm:pb-5 pt-1 text-slate-700 dark:text-slate-300 text-sm leading-relaxed border-t border-slate-100 dark:border-slate-800/60 animate-in fade-in duration-200">
                     <p className="font-normal">{faq.answer}</p>
                   </div>
                 )}

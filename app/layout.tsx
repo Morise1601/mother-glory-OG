@@ -1,20 +1,10 @@
 import type { Metadata, Viewport } from "next";
-import { Sora, Outfit } from "next/font/google";
 import "./globals.css";
-
-const sora = Sora({
-  variable: "--font-sora",
-  subsets: ["latin"],
-  weight: ["600"],
-  display: "swap",
-});
-
-const outfit = Outfit({
-  variable: "--font-outfit",
-  subsets: ["latin"],
-  weight: ["400", "500", "600"],
-  display: "swap",
-});
+import MobileStickyBar from "@/components/MobileStickyBar";
+import SiteSettingsProvider from "@/components/public/SiteSettingsProvider";
+import { getSiteSettings } from "@/lib/data/settings";
+import { getCampuses } from "@/lib/data/campuses";
+export const dynamic = "force-dynamic";
 
 export const viewport: Viewport = {
   themeColor: "#090d16",
@@ -23,7 +13,7 @@ export const viewport: Viewport = {
   maximumScale: 5,
 };
 
-export const metadata: Metadata = {
+const baseMetadata: Metadata = {
   title: "Mother Glory Coaching & Tutorial Centre | NEET Coaching in Karaikal & Puducherry",
   description:
     "Best NEET Coaching in Karaikal & Puducherry | Mother Glory Coaching & Tutorial Centre",
@@ -81,7 +71,7 @@ export const metadata: Metadata = {
     siteName: "Mother Glory Coaching & Tutorial Centre",
     images: [
       {
-        url: "/images/hero_banner_mg.png",
+        url: "/images/hero_banner_mg.webp",
         width: 1200,
         height: 630,
         alt: "Mother Glory Coaching & Tutorial Centre Interactive Campus Classroom",
@@ -95,7 +85,7 @@ export const metadata: Metadata = {
     title: "Mother Glory Coaching & Tutorial Centre | NEET Coaching Centre",
     description:
       "Best NEET Coaching in Karaikal & Puducherry | Mother Glory Coaching & Tutorial Centre",
-    images: ["/images/gallery/gallery-1.png"],
+    images: ["/images/gallery/gallery-1.webp"],
   },
   robots: {
     index: true,
@@ -110,110 +100,48 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export async function generateMetadata(): Promise<Metadata> {
+  const settings = await getSiteSettings();
+  return {
+    ...baseMetadata, title: settings.siteTitle, description: settings.seoDescription,
+    metadataBase: new URL(settings.canonicalOrigin),
+    openGraph: { ...baseMetadata.openGraph, title: settings.siteTitle, description: settings.seoDescription, url: settings.canonicalOrigin, siteName: settings.institutionName },
+    twitter: { ...baseMetadata.twitter, title: settings.siteTitle, description: settings.seoDescription },
+  };
+}
+
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const jsonLd = [
-    {
-      "@context": "https://schema.org",
-      "@type": "EducationalOrganization",
-      "@id": "https://motherglory.edu/#organization",
-      name: "Mother Glory Coaching & Tutorial Centre",
-      url: "https://motherglory.edu",
-      logo: "https://motherglory.edu/images/logo_mg.png",
-      image: "https://motherglory.edu/images/hero_banner_mg.png",
-      description:
-        "Best NEET Coaching in Karaikal & Puducherry | Mother Glory Coaching & Tutorial Centre",
-      telephone: "+91 98428 23195",
-      email: "admissions@motherglory.edu",
-      address: [
-        {
-          "@type": "PostalAddress",
-          streetAddress: "11, 1st Cross, Subaiya Nagar, Sanjay Gandhi Nagar, Pudupalaiyam",
-          addressLocality: "Puducherry",
-          postalCode: "605001",
-          addressCountry: "IN",
-        },
-        {
-          "@type": "PostalAddress",
-          streetAddress: "171, Church St",
-          addressLocality: "Karaikal",
-          postalCode: "609602",
-          addressRegion: "Puducherry",
-          addressCountry: "IN",
-        },
-      ],
-      aggregateRating: {
-        "@type": "AggregateRating",
-        ratingValue: "4.9",
-        reviewCount: "520",
-        bestRating: "5",
-        worstRating: "1",
-      },
-      sameAs: [
-        "https://www.facebook.com/mothergloryneetacademykaraikal",
-        "https://www.instagram.com/mother_glory_official?igsh=aTVuOWNueXNqd2h6",
-      ],
-    },
-    {
-      "@context": "https://schema.org",
-      "@type": "Course",
-      name: "NEET UG Entrance Coaching Course",
-      description:
-        "Specialized intensive NEET UG medical entrance coaching program covering Physics, Chemistry, and Biology with daily practice problems, mock tests, and expert mentorship.",
-      provider: {
-        "@type": "EducationalOrganization",
-        name: "Mother Glory Coaching & Tutorial Centre",
-        url: "https://motherglory.edu",
-      },
-    },
-    {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      mainEntity: [
-        {
-          "@type": "Question",
-          name: "Why is Mother Glory Coaching Centre considered the best NEET coaching in Karaikal and Puducherry?",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text: "Mother Glory Coaching & Tutorial Centre has a proven 16+ year track record of excellence with over 3,000+ students clearing NEET eligibility marks and 1,000+ securing medical college seats.",
-          },
-        },
-        {
-          "@type": "Question",
-          name: "What courses are offered at Mother Glory Coaching Centre?",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text: "We offer NEET UG Coaching, Foundation Courses for Class 9 & 10, Board & Entrance prep for Class 11 & 12, and dedicated Repeater / Dropper batches.",
-          },
-        },
-        {
-          "@type": "Question",
-          name: "Where are Mother Glory Coaching Centre campuses located?",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text: "Our campuses are located in Puducherry (Subaiya Nagar, Pudupalaiyam) and Karaikal (171, Church Street).",
-          },
-        },
-      ],
-    },
-  ];
+  const [settings, campuses] = await Promise.all([getSiteSettings(), getCampuses()]);
+  const jsonLd = {
+    "@context": "https://schema.org", "@type": "EducationalOrganization",
+    "@id": settings.canonicalOrigin + "/#organization", name: settings.institutionName,
+    url: settings.canonicalOrigin, logo: settings.canonicalOrigin + "/images/logo_mg.webp",
+    description: settings.seoDescription, telephone: settings.contactPhones?.[0] || '+91 98428 23195', email: settings.contactEmail,
+    address: campuses.map(campus => ({ "@type": "PostalAddress", streetAddress: campus.address,
+      addressLocality: campus.city, addressRegion: campus.state, postalCode: campus.postalCode, addressCountry: "IN" })),
+  };
 
   return (
     <html
       lang="en"
-      className={`${sora.variable} ${outfit.variable} h-full antialiased scroll-smooth`}
+      className="h-full antialiased scroll-smooth"
+      data-scroll-behavior="smooth"
     >
       <head>
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}
         />
       </head>
-      <body className="min-h-full flex flex-col font-sans bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 antialiased">
-        {children}
+      <body className="min-h-full flex flex-col font-sans bg-slate-50 text-slate-900 antialiased pb-16 sm:pb-0">
+        <SiteSettingsProvider settings={settings}>
+          {children}
+          <MobileStickyBar />
+        </SiteSettingsProvider>
       </body>
     </html>
   );
