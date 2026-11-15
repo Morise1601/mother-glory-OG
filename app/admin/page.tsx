@@ -240,7 +240,7 @@ export default function AdminLoginPage() {
             </div>
 
             {/* Super Admin Quick Access Info Card */}
-            <div className="p-3.5 bg-[#FAF8F3] border border-[#DFE3EA] rounded-2xl text-[11px] text-[#596579] space-y-1.5">
+            {/* <div className="p-3.5 bg-[#FAF8F3] border border-[#DFE3EA] rounded-2xl text-[11px] text-[#596579] space-y-1.5">
               <div className="flex items-center justify-between">
                 <span className="font-semibold text-[#122452]">Super Admin Credentials</span>
                 <button
@@ -256,7 +256,7 @@ export default function AdminLoginPage() {
               </div>
               <p>User: <code className="text-[#122452] font-mono bg-white px-1.5 py-0.5 rounded border border-[#DFE3EA]">admin@motherglory.edu</code> or <code className="text-[#122452] font-mono bg-white px-1.5 py-0.5 rounded border border-[#DFE3EA]">superadmin</code></p>
               <p>Password: <code className="text-[#122452] font-mono bg-white px-1.5 py-0.5 rounded border border-[#DFE3EA]">Admin@MotherGlory2026!</code></p>
-            </div>
+            </div> */}
 
             {/* Submit Button */}
             <div className="pt-2">
