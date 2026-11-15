@@ -3,6 +3,7 @@
 import { use, useState, useEffect } from "react";
 import Link from "next/link";
 import AdminPageWrapper from "@/components/admin/AdminPageWrapper";
+import PageLoader from "@/components/ui/PageLoader";
 import { adminRequest } from "@/lib/admin/api";
 import { Program } from "@/types/content.types";
 import { ArrowLeft, CheckCircle2, Loader2, Trash2 } from "lucide-react";
@@ -68,6 +69,9 @@ export default function EditProgramPage({
         </Link>
       }
     >
+      {!program && !error ? (
+        <PageLoader fullScreen={false} size={200} />
+      ) : (
       <div className="bg-white rounded-2xl border border-[#DFE3EA] p-6 sm:p-8 shadow-xs space-y-6 max-w-4xl">
         <div className="border-b border-[#DFE3EA] pb-4">
           <h2 className="font-serif font-bold text-xl text-[#122452]">
@@ -201,6 +205,7 @@ export default function EditProgramPage({
           </button>
         </div>
       </div>
+      )}
     </AdminPageWrapper>
   );
 }

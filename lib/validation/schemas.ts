@@ -89,7 +89,7 @@ export const achievementSchema = z.object({
   year: z.number().int().min(2000).max(2035),
   category: z.enum(['Events', 'Awards', 'Initiatives', 'Academic']),
   campus: z.enum(['Puducherry', 'Karaikal', 'Both']),
-  summary: z.string().trim().min(10, 'Summary is required').max(500),
+  summary: z.string().trim().max(500).nullish().transform(val => val || '').default(''),
   caption: z.string().trim().max(300).optional(),
   imageUrl: imageUrlSchema,
   altText: z.string().trim().min(3, 'Alt text is required for accessibility').max(300),

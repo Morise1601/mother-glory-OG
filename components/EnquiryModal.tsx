@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { X, Send, CheckCircle2, Phone, MessageSquare, Sparkles } from "lucide-react";
+import { X, Send, CheckCircle2, Phone, MessageSquare, Sparkles, Loader2 } from "lucide-react";
 import { enquirySchema } from "@/lib/validation/schemas";
 
 interface EnquiryModalProps {
@@ -216,10 +216,19 @@ export default function EnquiryModal({ isOpen, onClose, defaultProgram }: Enquir
               <button
                 type="submit"
                 disabled={submitting}
-                className="w-full py-3 rounded-xl bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white font-semibold text-sm shadow-lg shadow-red-600/30 transition-all flex items-center justify-center gap-2 cursor-pointer"
+                className="w-full py-3 rounded-xl bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white font-semibold text-sm shadow-lg shadow-red-600/30 transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-60"
               >
-                <Send className="w-4 h-4 text-white" />
-                <span>{submitting ? "Submitting…" : "Submit Admission Enquiry"}</span>
+                {submitting ? (
+                  <>
+                    <Loader2 className="w-4 h-4 animate-spin text-white" />
+                    <span>Submitting enquiry...</span>
+                  </>
+                ) : (
+                  <>
+                    <Send className="w-4 h-4 text-white" />
+                    <span>Submit Admission Enquiry</span>
+                  </>
+                )}
               </button>
 
               <div className="pt-2 text-center">

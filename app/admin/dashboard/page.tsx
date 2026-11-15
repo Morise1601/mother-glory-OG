@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import AdminPageWrapper from '@/components/admin/AdminPageWrapper';
+import PageLoader from '@/components/ui/PageLoader';
 import type { AuditLogItem } from '@/types/content.types';
 
 type DashboardData = { stats: { programs: number | null; achievements: number | null; staff: number | null; enquiriesTotal: number | null; enquiriesNew: number | null }; activity: AuditLogItem[]; permissions: string[]; isSuperAdmin: boolean };
@@ -32,10 +33,14 @@ export default function AdminDashboardPage() {
   ].filter(action => data && (data.isSuperAdmin || data.permissions.includes(action.permission)));
   return <AdminPageWrapper title="Dashboard">
     {error && <p role="alert" className="p-4 rounded-xl bg-red-50 text-red-800">{error}</p>}
-    {!data && !error && <p role="status">Loading dashboard…</p>}
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">{cards.map(card => <Link key={card.href} href={card.href} className="p-6 bg-white border border-[#DFE3EA] rounded-2xl"><p className="text-sm text-slate-600">{card.label}</p><p className="text-3xl font-serif font-bold text-[#122452] mt-2">{card.value}</p></Link>)}</div>
-    {data?.stats.enquiriesNew !== null && data && <p className="text-sm text-slate-600">New enquiries: {data.stats.enquiriesNew}</p>}
-    <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">{actions.map(action => <Link key={action.href} href={action.href} className="rounded-xl border border-[#DFE3EA] bg-white px-5 py-4 text-sm font-semibold text-[#122452] hover:border-[#B68A35]">{action.label} →</Link>)}</div>
-    {data && (data.isSuperAdmin || data.permissions.includes('logs.view')) && <div className="p-6 bg-white border border-[#DFE3EA] rounded-2xl space-y-4"><h2 className="text-xl font-serif font-bold text-[#122452]">Recent activity</h2>{data.activity.length ? data.activity.map(item => <div key={item.id} className="border-t border-[#DFE3EA] pt-3 text-sm"><p>{item.summary}</p><p className="text-xs text-slate-500">{item.actorName} · {new Date(item.createdAt).toLocaleString()}</p></div>) : <p className="text-sm text-slate-600">No recorded activity.</p>}<Link href="/admin/audit" className="inline-block text-sm underline">View audit trail</Link></div>}
+    {!data && !error && <PageLoader fullScreen={false} size={200} />}
+    {data && (
+      <>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">{cards.map(card => <Link key={card.href} href={card.href} className="p-6 bg-white border border-[#DFE3EA] rounded-2xl"><p className="text-sm text-slate-600">{card.label}</p><p className="text-3xl font-serif font-bold text-[#122452] mt-2">{card.value}</p></Link>)}</div>
+        {data.stats.enquiriesNew !== null && <p className="text-sm text-slate-600">New enquiries: {data.stats.enquiriesNew}</p>}
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">{actions.map(action => <Link key={action.href} href={action.href} className="rounded-xl border border-[#DFE3EA] bg-white px-5 py-4 text-sm font-semibold text-[#122452] hover:border-[#B68A35]">{action.label} →</Link>)}</div>
+        {(data.isSuperAdmin || data.permissions.includes('logs.view')) && <div className="p-6 bg-white border border-[#DFE3EA] rounded-2xl space-y-4"><h2 className="text-xl font-serif font-bold text-[#122452]">Recent activity</h2>{data.activity.length ? data.activity.map(item => <div key={item.id} className="border-t border-[#DFE3EA] pt-3 text-sm"><p>{item.summary}</p><p className="text-xs text-slate-500">{item.actorName} · {new Date(item.createdAt).toLocaleString()}</p></div>) : <p className="text-sm text-slate-600">No recorded activity.</p>}<Link href="/admin/audit" className="inline-block text-sm underline">View audit trail</Link></div>}
+      </>
+    )}
   </AdminPageWrapper>;
 }

@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import AdminPageWrapper from "@/components/admin/AdminPageWrapper";
 import ImageCropperModal from "@/components/admin/ImageCropperModal";
+import PageLoader from "@/components/ui/PageLoader";
 import { reportAdminWarning } from "@/lib/admin/api";
 import { WelcomePopupSettings } from "@/types/content.types";
 import { INITIAL_WELCOME_POPUP } from "@/lib/data/content-defaults";
@@ -23,6 +24,7 @@ import {
   MessageSquare,
   Clock,
   Layers,
+  Loader2,
 } from "lucide-react";
 
 export default function AdminWelcomePopupPage() {
@@ -247,7 +249,7 @@ export default function AdminWelcomePopupPage() {
               : "bg-[#122452] hover:bg-[#1b357a]"
           }`}
         >
-          <Save className="w-4 h-4" />
+          {isSaving ? <Loader2 className="w-4 h-4 animate-spin" /> : <Save className="w-4 h-4" />}
           <span>{isSaving ? "Saving..." : hasUnsavedChanges ? "Save Changes (Unsaved)" : "Save Changes"}</span>
         </button>
       }
@@ -266,6 +268,9 @@ export default function AdminWelcomePopupPage() {
         </div>
       )}
 
+      {!loaded ? (
+        <PageLoader fullScreen={false} size={200} />
+      ) : (
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         {/* Left: Configuration Controls */}
         <div className="lg:col-span-7 bg-white rounded-[8px] border border-[#DFE3EA] p-6 sm:p-8 shadow-xs space-y-6">
@@ -697,6 +702,7 @@ export default function AdminWelcomePopupPage() {
           </div>
         </div>
       </div>
+      )}
 
       {/* Image Cropper Modal */}
       <ImageCropperModal
