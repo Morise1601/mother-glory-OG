@@ -20,11 +20,33 @@ export async function generateMetadata({
   const achievement = await getAchievementBySlug(slug);
   if (!achievement) return { title: "Achievement Not Found" };
 
+  const title = `${achievement.title} - NEET Result & Achievement | Mother Glory`;
+  const description = achievement.summary || `Verified institutional NEET achievement record of ${achievement.title} at Mother Glory Coaching Centre.`;
+
   return {
     alternates: { canonical: `/achievements/${slug}` },
-    openGraph: { url: `/achievements/${slug}` },
-    title: `${achievement.title} | Mother Glory Achievements`,
-    description: achievement.summary,
+    title,
+    description,
+    openGraph: {
+      url: `/achievements/${slug}`,
+      title,
+      description,
+      images: [
+        {
+          url: achievement.imageUrl,
+          width: 800,
+          height: 1000,
+          alt: `${achievement.title} NEET Poster`,
+        },
+      ],
+      type: "article",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [achievement.imageUrl],
+    },
   };
 }
 
@@ -42,8 +64,28 @@ export default async function AchievementDetailPage({
 
   const settings = await getSiteSettings();
 
+  const achievementJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ImageObject",
+    name: achievement.title,
+    caption: achievement.caption || achievement.summary,
+    description: achievement.summary,
+    contentUrl: `https://www.motherglory.com${achievement.imageUrl}`,
+    datePublished: achievement.createdAt,
+    dateModified: achievement.updatedAt,
+    author: {
+      "@type": "EducationalOrganization",
+      name: settings.institutionName,
+      url: "https://www.motherglory.com",
+    },
+  };
+
   return (
     <div className="min-h-screen flex flex-col bg-[#FAF8F3] text-[#172033]">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(achievementJsonLd).replace(/</g, "\\u003c") }}
+      />
       <Header announcement={settings.showAnnouncement ? settings.announcementNotice : undefined} />
 
       <main className="flex-grow py-10 sm:py-16">

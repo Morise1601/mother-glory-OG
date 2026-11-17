@@ -24,10 +24,23 @@ import {
 
 export const metadata = {
   alternates: { canonical: "/about" },
-  openGraph: { url: "/about" },
+  openGraph: {
+    url: "/about",
+    title: "About Us | Mother Glory Coaching & Tutorial Centre",
+    description:
+      "Learn about our 16+ years educational mission, expert medical mentorship, and academic leadership in Puducherry and Karaikal.",
+    images: [{ url: "/images/banner_about.webp", width: 1200, height: 630, alt: "About Mother Glory Banner" }],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "About Mother Glory NEET Academy",
+    description: "Learn about our educational mission and academic leadership in Puducherry and Karaikal.",
+    images: ["/images/banner_about.webp"],
+  },
   title: "About Us | Mother Glory Coaching & Tutorial Centre",
   description:
-    "Learn about our educational mission, academic leadership, and disciplined learning approach in Puducherry and Karaikal.",
+  "Learn about our 16+ years educational mission, expert medical mentorship, and academic leadership in Puducherry and Karaikal.",
 };
 
 export default async function AboutPage() {
@@ -36,6 +49,26 @@ export default async function AboutPage() {
     getCampuses(),
     getSiteSettings(),
   ]);
+
+  const aboutJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    name: "About Mother Glory Coaching & Tutorial Centre",
+    description:
+      "Learn about our 16+ years educational mission, expert medical mentorship, and academic leadership in Puducherry and Karaikal.",
+    mainEntity: {
+      "@type": "EducationalOrganization",
+      name: settings.institutionName,
+      url: "https://www.motherglory.com",
+      founders: founders.map((f) => ({
+        "@type": "Person",
+        name: f.name,
+        jobTitle: f.title,
+        description: f.biography,
+        image: f.portraitUrl ? `https://www.motherglory.com${f.portraitUrl}` : undefined,
+      })),
+    },
+  };
 
   const values = [
     {
@@ -72,6 +105,10 @@ export default async function AboutPage() {
 
   return (
     <div className="min-h-screen flex flex-col bg-[#FAF8F3] text-[#172033]">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(aboutJsonLd).replace(/</g, "\\u003c") }}
+      />
       <Header announcement={settings.showAnnouncement ? settings.announcementNotice : undefined} />
 
       <main className="flex-grow">

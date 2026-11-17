@@ -9,10 +9,23 @@ import { getSiteSettings } from "@/lib/data/settings";
 
 export const metadata = {
   alternates: { canonical: "/contact" },
-  openGraph: { url: "/contact" },
-  title: "Contact & Admissions | Mother Glory Coaching & Tutorial Centre",
+  openGraph: {
+    url: "/contact",
+    title: "Contact & Admissions | Mother Glory Coaching Centre Puducherry & Karaikal",
+    description:
+      "Contact Mother Glory NEET Academy in Puducherry and Karaikal. Inquire about admissions, repeater batch schedules, fees, and counselling support.",
+    images: [{ url: "/images/banner_contact.webp", width: 1200, height: 630, alt: "Contact Mother Glory Admissions" }],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Contact & Admissions | Mother Glory NEET Academy",
+    description: "Inquire about NEET admissions, batch schedules, fees, and counselling at Puducherry and Karaikal.",
+    images: ["/images/banner_contact.webp"],
+  },
+  title: "Contact & Admissions | Mother Glory Coaching Centre Puducherry & Karaikal",
   description:
-    "Contact Mother Glory NEET Academy in Puducherry and Karaikal. Inquire about admissions, batch schedules, fees, and counselling support.",
+  "Contact Mother Glory NEET Academy in Puducherry and Karaikal. Inquire about admissions, repeater batch schedules, fees, and counselling support.",
 };
 
 export default async function ContactPage({
@@ -30,8 +43,41 @@ export default async function ContactPage({
   const defaultCampus = campus?.toLowerCase() === "karaikal" ? "Karaikal" : "Puducherry";
   const defaultProgram = programs.some(p => p.title === program) ? program! : programs[0]?.title || "Admissions information";
 
+  const contactJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    name: "Contact Mother Glory NEET Academy",
+    description: "Admissions inquiry, campus contact numbers, and location details for Puducherry and Karaikal branches.",
+    mainEntity: campuses.map((c) => {
+      const isPuducherry = c.slug === "puducherry" || c.city.toLowerCase().includes("puducherry");
+      return {
+        "@type": "EducationalOrganization",
+        name: `${settings.institutionName} - ${c.name}`,
+        telephone: c.phone,
+        email: c.email || settings.contactEmail,
+        address: {
+          "@type": "PostalAddress",
+          streetAddress: c.address,
+          addressLocality: c.city,
+          addressRegion: c.state,
+          postalCode: c.postalCode,
+          addressCountry: "IN",
+        },
+        geo: {
+          "@type": "GeoCoordinates",
+          latitude: isPuducherry ? 11.931086 : 10.9254,
+          longitude: isPuducherry ? 79.809073 : 79.8329,
+        },
+      };
+    }),
+  };
+
   return (
     <div className="min-h-screen flex flex-col bg-[#FAF8F3] text-[#172033]">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(contactJsonLd).replace(/</g, "\\u003c") }}
+      />
       <Header announcement={settings.showAnnouncement ? settings.announcementNotice : undefined} />
 
       <main className="flex-grow">

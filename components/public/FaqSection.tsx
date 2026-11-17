@@ -26,7 +26,7 @@ export default function FaqSection({ customFaqs }: { customFaqs?: FaqItem[] }) {
     },
     {
       q: "Where are the centres located and what are the office hours?",
-      a: "Our Puducherry centre is located at 11, 1st Cross, Subaiya Nagar, Sanjay Gandhi Nagar, Pudupalaiyam. Our Karaikal centre is at 171, Church St. Both centres operate Monday through Saturday from 8:00 AM to 5:00 PM IST.",
+      a: "Our Puducherry centre is located at 11, 1st Cross, Subaiya Nagar, Sanjay Gandhi Nagar, Pudupalaiyam, Puducherry 605013. Our Karaikal centre is at 171, Church St, Karaikal, Puducherry 609602. Both centres operate Monday through Saturday from 8:00 AM to 5:00 PM IST.",
     },
     {
       q: "How can parents track their child's academic progress?",
@@ -36,8 +36,25 @@ export default function FaqSection({ customFaqs }: { customFaqs?: FaqItem[] }) {
 
   const faqs = customFaqs && customFaqs.length > 0 ? customFaqs : defaultFaqs;
 
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((f) => ({
+      "@type": "Question",
+      name: f.q,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: f.a,
+      },
+    })),
+  };
+
   return (
     <section className="py-12 sm:py-16 bg-white border-t border-[#DFE3EA]">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd).replace(/</g, "\\u003c") }}
+      />
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-10 space-y-2">

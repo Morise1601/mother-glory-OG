@@ -30,11 +30,33 @@ export async function generateMetadata({
   const program = await getProgramBySlug(slug);
   if (!program) return { title: "Program Not Found" };
 
+  const title = `${program.title} | Mother Glory NEET Academy`;
+  const description = `${program.tagline} Comprehensive NEET medical entrance coaching in Puducherry and Karaikal with expert faculty.`;
+
   return {
     alternates: { canonical: `/programs/${slug}` },
-    openGraph: { url: `/programs/${slug}` },
-    title: `${program.title} | Mother Glory NEET Academy`,
-    description: program.tagline,
+    title,
+    description,
+    openGraph: {
+      url: `/programs/${slug}`,
+      title,
+      description,
+      images: [
+        {
+          url: program.imageUrl || "/images/banner_programs.webp",
+          width: 1200,
+          height: 630,
+          alt: `${program.title} Course Cover`,
+        },
+      ],
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [program.imageUrl || "/images/banner_programs.webp"],
+    },
   };
 }
 
@@ -52,8 +74,67 @@ export default async function ProgramDetailPage({
 
   const settings = await getSiteSettings();
 
+  const courseJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Course",
+    name: program.title,
+    description: program.tagline,
+    provider: {
+      "@type": "EducationalOrganization",
+      name: settings.institutionName,
+      url: "https://www.motherglory.com",
+      logo: "https://www.motherglory.com/images/logo_mg.webp",
+    },
+    courseCode: program.slug,
+    educationalCredentialAwarded: "NEET Medical Entrance Preparation",
+    occupationalCredentialAwarded: "NEET Qualified Candidate",
+    audience: {
+      "@type": "EducationalAudience",
+      educationalRole: "student",
+      audienceType: program.targetAudience,
+    },
+    hasCourseInstance: [
+      {
+        "@type": "CourseInstance",
+        courseMode: "Onsite",
+        courseWorkload: program.scheduleNotice || "Full Academic Term",
+        location: {
+          "@type": "Place",
+          name: "Mother Glory Puducherry Campus",
+          address: {
+            "@type": "PostalAddress",
+            streetAddress: "11, 1st Cross, Subaiya Nagar, Sanjay Gandhi Nagar, Pudupalaiyam",
+            addressLocality: "Puducherry",
+            postalCode: "605013",
+            addressCountry: "IN",
+          },
+        },
+      },
+      {
+        "@type": "CourseInstance",
+        courseMode: "Onsite",
+        courseWorkload: program.scheduleNotice || "Full Academic Term",
+        location: {
+          "@type": "Place",
+          name: "Mother Glory Karaikal Campus",
+          address: {
+            "@type": "PostalAddress",
+            streetAddress: "171, Church St",
+            addressLocality: "Karaikal",
+            postalCode: "609602",
+            addressCountry: "IN",
+          },
+        },
+      },
+    ],
+  };
+
   return (
     <div className="min-h-screen flex flex-col bg-[#FAF8F3] text-[#172033]">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(courseJsonLd).replace(/</g, "\\u003c") }}
+      />
       <Header announcement={settings.showAnnouncement ? settings.announcementNotice : undefined} />
 
       <main className="flex-grow">

@@ -39,6 +39,11 @@ export default async function HomePage() {
       />
 
       <main className="flex-grow">
+        {/* Primary Accessible & SEO Heading */}
+        <h1 className="sr-only">
+          Mother Glory Coaching &amp; Tutorial Centre — Best NEET Coaching in Puducherry &amp; Karaikal
+        </h1>
+
         {/* 2. Full-Width & Fit-to-Screen Banner Slider */}
         <EntryTransition delay={50} className="w-full">
           <HeroCarousel slides={banners} />
