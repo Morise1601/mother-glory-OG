@@ -414,7 +414,7 @@ export const VERIFIED_CAMPUSES: Campus[] = [
     address: '11, 1st Cross, Subaiya Nagar, Sanjay Gandhi Nagar, Pudupalaiyam',
     city: 'Puducherry',
     state: 'Puducherry',
-    postalCode: '605001',
+    postalCode: '605013',
     phone: '+91 98428 23195',
     altPhone: '+91 98944 23195',
     email: 'admissions@motherglory.edu',

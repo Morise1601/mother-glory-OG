@@ -22,7 +22,7 @@
 ## 2. Institutional Coordinates & Contact Numbers
 
 ### Puducherry Centre
-* **Street Address:** 11, 1st Cross, Subaiya Nagar, Sanjay Gandhi Nagar, Pudupalaiyam, Puducherry — 605 001
+* **Street Address:** 11, 1st Cross, Subaiya Nagar, Sanjay Gandhi Nagar, Pudupalaiyam, Puducherry — 605 013
 * **Primary Phone:** `+91 98428 23195`
 * **Alternative Phone:** `+91 98944 23195`
 * **Admissions Email:** `admissions@motherglory.edu`

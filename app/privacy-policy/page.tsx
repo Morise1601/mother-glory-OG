@@ -83,7 +83,7 @@ export default async function PrivacyPolicyPage() {
                 <br />
                 <strong>Mother Glory Coaching & Tutorial Centre</strong>
                 <br />
-                11, 1st Cross, Subaiya Nagar, Sanjay Gandhi Nagar, Pudupalaiyam, Puducherry — 605 001.
+                11, 1st Cross, Subaiya Nagar, Sanjay Gandhi Nagar, Pudupalaiyam, Puducherry — 605 013.
                 <br />
                 Phone: +91 98428 23195 | Email: admissions@motherglory.edu
               </p>
