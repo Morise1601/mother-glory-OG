@@ -5,6 +5,7 @@ import { Campus, Program } from "@/types/content.types";
 import { useSiteSettings } from "./SiteSettingsProvider";
 import { EnquiryFormData, enquirySchema } from "@/lib/validation/schemas";
 import { CheckCircle2, AlertCircle, Loader2, Send, MapPin, Phone, Mail, Clock, ExternalLink } from "lucide-react";
+import SocialLinks from "@/components/public/SocialLinks";
 
 interface ContactFormProps {
   campuses: Campus[];
@@ -149,7 +150,9 @@ export default function ContactForm({
             </h3>
 
             <p className="text-xs sm:text-sm text-[#596579] leading-relaxed">
-              {activeCampus.address}, {activeCampus.city} — {activeCampus.postalCode}
+              {activeCampus.slug === "puducherry" || activeCampus.city.toLowerCase() === "puducherry"
+                ? `${activeCampus.address}, ${activeCampus.city}, ${activeCampus.postalCode}`
+                : `${activeCampus.address}, ${activeCampus.city}, ${activeCampus.state} ${activeCampus.postalCode}`}
             </p>
 
             <div className="space-y-2 pt-2 border-t border-[#DFE3EA] text-xs sm:text-sm">
@@ -187,6 +190,17 @@ export default function ContactForm({
             </div>
           </div>
         )}
+
+        {/* Social Channels - Unified single set for both campuses */}
+        <div className="bg-white rounded-2xl border border-[#DFE3EA] p-5 shadow-xs space-y-3">
+          <div>
+            <h4 className="font-serif font-bold text-sm text-[#122452]">Follow Our Social Channels</h4>
+            <p className="text-xs text-[#596579] mt-0.5">
+              Official institutional updates, student achievements, and NEET counselling.
+            </p>
+          </div>
+          <SocialLinks variant="light" showLabels={true} />
+        </div>
       </div>
 
       {/* Right: Admission & Contact Enquiry Form (7 columns) */}

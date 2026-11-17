@@ -2,7 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { getSiteSettings } from "@/lib/data/settings";
 import { getCampuses } from "@/lib/data/campuses";
-import { Phone, Mail, Clock, MapPin, Award, CheckCircle2 } from "lucide-react";
+import { Phone, Mail, Clock, MapPin, Award } from "lucide-react";
+import SocialLinks from "@/components/public/SocialLinks";
 
 export default async function Footer() {
   const [settings, campuses] = await Promise.all([getSiteSettings(), getCampuses()]);
@@ -39,23 +40,54 @@ export default async function Footer() {
               Dedicated coaching and guidance for NEET medical entrance examinations. Guided by experienced mentors, conceptual clarity, and disciplined preparation in Puducherry and Karaikal.
             </p>
 
-            <div className="pt-2 flex items-center gap-2 text-xs text-slate-300">
+            <div className="pt-1 flex items-center gap-2 text-xs text-slate-300">
               <Award className="w-4 h-4 text-[#B68A35] shrink-0" />
               <span>Over a decade and a half of medical coaching guidance</span>
             </div>
+
+            {/* Social Media Channels - Unified for both campuses */}
+            <div className="pt-2 space-y-2">
+              <span className="text-xs text-slate-400 block font-medium">Connect With Us</span>
+              <SocialLinks variant="dark" />
+            </div>
           </div>
 
-          {campuses.map(campus => (
-            <div key={campus.id} className="lg:col-span-3 space-y-3">
-              <h3 className="font-serif font-bold text-base text-white tracking-wide flex items-center gap-2"><MapPin className="w-4 h-4 text-[#B68A35]" /><span>{campus.name}</span></h3>
-              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">{campus.address}, {campus.city}, {campus.state} ? {campus.postalCode}</p>
-              <div className="space-y-1.5 pt-1 text-xs sm:text-sm">
-                <div className="flex items-center gap-2 text-slate-300"><Phone className="w-3.5 h-3.5 text-[#B68A35]" /><a href={"tel:" + campus.phone.replace(/[^+0-9]/g, "")} className="hover:text-white transition-colors">{campus.phone}</a></div>
-                <div className="flex items-center gap-2 text-slate-300"><Mail className="w-3.5 h-3.5 text-[#B68A35]" /><a href={"mailto:" + settings.contactEmail} className="hover:text-white transition-colors">{settings.contactEmail}</a></div>
-                <div className="flex items-center gap-2 text-slate-300"><Clock className="w-3.5 h-3.5 text-[#B68A35]" /><span>{settings.workingHours}</span></div>
+          {campuses.map(campus => {
+            const isPuducherry = campus.slug === "puducherry" || campus.city.toLowerCase() === "puducherry";
+            const formattedAddress = isPuducherry
+              ? `${campus.address}, ${campus.city}, ${campus.postalCode}`
+              : `${campus.address}, ${campus.city}, ${campus.state} ${campus.postalCode}`;
+
+            return (
+              <div key={campus.id} className="lg:col-span-3 space-y-3">
+                <h3 className="font-serif font-bold text-base text-white tracking-wide flex items-center gap-2">
+                  <MapPin className="w-4 h-4 text-[#B68A35]" />
+                  <span>{campus.name}</span>
+                </h3>
+                <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                  {formattedAddress}
+                </p>
+                <div className="space-y-1.5 pt-1 text-xs sm:text-sm">
+                  <div className="flex items-center gap-2 text-slate-300">
+                    <Phone className="w-3.5 h-3.5 text-[#B68A35]" />
+                    <a href={"tel:" + campus.phone.replace(/[^+0-9]/g, "")} className="hover:text-white transition-colors">
+                      {campus.phone}
+                    </a>
+                  </div>
+                  <div className="flex items-center gap-2 text-slate-300">
+                    <Mail className="w-3.5 h-3.5 text-[#B68A35]" />
+                    <a href={"mailto:" + settings.contactEmail} className="hover:text-white transition-colors">
+                      {settings.contactEmail}
+                    </a>
+                  </div>
+                  <div className="flex items-center gap-2 text-slate-300">
+                    <Clock className="w-3.5 h-3.5 text-[#B68A35]" />
+                    <span>{settings.workingHours}</span>
+                  </div>
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
 
           {/* Col 4: Quick Links (2 cols) */}
           <div className="lg:col-span-2 space-y-3">

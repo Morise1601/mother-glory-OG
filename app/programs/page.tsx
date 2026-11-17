@@ -83,29 +83,44 @@ export default async function ProgramsPage() {
       <Header announcement={settings.showAnnouncement ? settings.announcementNotice : undefined} />
 
       <main className="flex-grow">
-        {/* Hero Section */}
-        <section className="bg-gradient-to-r from-[#122452] via-[#122452] to-[#1a3370] text-white py-14 sm:py-20">
-          <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Hero Section with Medical Coaching & Curricula Background */}
+        <section className="relative overflow-hidden bg-[#122452] text-white py-16 sm:py-24">
+          {/* Background Image Container */}
+          <div className="absolute inset-0 z-0">
+            <Image
+              src="/images/banner_programs.webp"
+              alt="Medical Coaching and Curricula Banner"
+              fill
+              priority
+              sizes="100vw"
+              className="object-cover object-right lg:object-center"
+            />
+            {/* Left-to-right institutional gradient overlay for text readability */}
+            <div className="absolute inset-0 bg-gradient-to-r from-[#122452] via-[#122452]/80 sm:via-[#122452]/65 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-b from-black/25 via-transparent to-black/35" />
+          </div>
+
+          <div className="relative z-10 max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-3xl space-y-4">
-              <span className="inline-flex items-center gap-2 px-3.5 py-1 rounded-[8px] bg-white/10 border border-white/15 text-slate-200 text-xs font-semibold capitalize tracking-wide">
+              <span className="inline-flex items-center gap-2 px-3.5 py-1 rounded-[8px] bg-white/10 backdrop-blur-md border border-white/20 text-slate-100 text-xs font-semibold capitalize tracking-wide shadow-xs">
                 Comprehensive Medical Curricula
               </span>
-              <h1 className="text-3xl sm:text-5xl font-serif font-bold text-white leading-tight">
+              <h1 className="text-3xl sm:text-5xl font-serif font-bold text-white leading-tight drop-shadow-md">
                 A clear path to your next milestone
               </h1>
-              <p className="text-slate-200 text-sm sm:text-base leading-relaxed">
+              <p className="text-slate-100 text-sm sm:text-base leading-relaxed drop-shadow-sm max-w-2xl">
                 Focused programs for NEET aspirants at every stage of their preparation journey — from high-school foundation to intensive dropper batches.
               </p>
               <div className="pt-2 flex flex-wrap gap-3">
                 <Link
                   href="/contact"
-                  className="px-5 py-2.5 rounded-[8px] bg-[#B68A35] hover:bg-[#9c7328] text-white text-xs sm:text-sm font-semibold transition-colors"
+                  className="px-5 py-2.5 rounded-[8px] bg-[#B68A35] hover:bg-[#9c7328] text-white text-xs sm:text-sm font-semibold transition-colors shadow-xs"
                 >
                   Enquire Now
                 </Link>
                 <a
                   href="#admission-process"
-                  className="px-5 py-2.5 rounded-[8px] bg-white/10 hover:bg-white/20 text-white border border-white/20 text-xs sm:text-sm font-semibold transition-colors"
+                  className="px-5 py-2.5 rounded-[8px] bg-white/10 hover:bg-white/20 text-white border border-white/20 text-xs sm:text-sm font-semibold transition-colors backdrop-blur-xs"
                 >
                   Admission Process
                 </a>
@@ -133,13 +148,36 @@ export default async function ProgramsPage() {
               {programs.map((program) => (
                 <article
                   key={program.id}
-                  className="bg-[#FAF8F3] rounded-[8px] border border-[#DFE3EA] p-6 sm:p-7 shadow-xs hover:shadow-md transition-all flex flex-col justify-between"
+                  className="bg-[#FAF8F3] rounded-[8px] border border-[#DFE3EA] overflow-hidden shadow-xs hover:shadow-lg transition-all flex flex-col justify-between group"
                 >
-                  <div className="space-y-4">
-                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-[8px] bg-[#122452]/5 text-[#122452] text-xs font-semibold">
-                      <GraduationCap className="w-3.5 h-3.5 text-[#B68A35]" />
-                      <span>{program.targetAudience}</span>
-                    </span>
+                  <div>
+                    {program.imageUrl && (
+                      <div className="relative aspect-[16/9] w-full overflow-hidden bg-slate-900 border-b border-[#DFE3EA]">
+                        <Image
+                          src={program.imageUrl}
+                          alt={program.title}
+                          fill
+                          unoptimized={program.imageUrl.startsWith("https://")}
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 400px"
+                          className="object-cover group-hover:scale-105 transition-transform duration-500"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                        <div className="absolute top-3 left-3">
+                          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-[8px] bg-white/95 backdrop-blur-md text-[#122452] text-xs font-bold shadow-xs">
+                            <GraduationCap className="w-3.5 h-3.5 text-[#B68A35]" />
+                            <span>{program.targetAudience}</span>
+                          </span>
+                        </div>
+                      </div>
+                    )}
+
+                    <div className="p-6 sm:p-7 space-y-4">
+                      {!program.imageUrl && (
+                        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-[8px] bg-[#122452]/5 text-[#122452] text-xs font-semibold">
+                          <GraduationCap className="w-3.5 h-3.5 text-[#B68A35]" />
+                          <span>{program.targetAudience}</span>
+                        </span>
+                      )}
 
                     <h3 className="text-xl font-serif font-bold text-[#122452]">
                       {program.title}
@@ -158,9 +196,10 @@ export default async function ProgramsPage() {
                         </div>
                       ))}
                     </div>
+                    </div>
                   </div>
 
-                  <div className="pt-6 mt-6 border-t border-[#DFE3EA] flex items-center justify-between gap-3">
+                  <div className="p-6 sm:p-7 pt-0 border-t border-[#DFE3EA] mt-4 flex items-center justify-between gap-3">
                     <Link
                       href={`/programs/${program.slug}`}
                       className="text-xs sm:text-sm font-semibold text-[#122452] hover:text-[#B68A35] flex items-center gap-1 transition-colors"
@@ -171,7 +210,7 @@ export default async function ProgramsPage() {
 
                     <Link
                       href={`/contact?program=${encodeURIComponent(program.title)}`}
-                      className="px-4 py-2 rounded-lg bg-[#B68A35] hover:bg-[#9c7328] text-white text-xs font-semibold transition-colors"
+                      className="px-4 py-2 rounded-[8px] bg-[#B68A35] hover:bg-[#9c7328] text-white text-xs font-semibold transition-colors shadow-xs"
                     >
                       Enquire
                     </Link>

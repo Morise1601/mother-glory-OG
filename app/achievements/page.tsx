@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Header from "@/components/public/Header";
 import Footer from "@/components/public/Footer";
 import AdmissionsCta from "@/components/public/AdmissionsCta";
@@ -25,18 +26,33 @@ export default async function AchievementsPage() {
       <Header announcement={settings.showAnnouncement ? settings.announcementNotice : undefined} />
 
       <main className="flex-grow">
-        {/* Header Hero */}
-        <section className="bg-gradient-to-r from-[#122452] via-[#122452] to-[#1a3370] text-white py-14 sm:py-20">
-          <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Header Hero with Uploaded Trophy & Academic Books Background */}
+        <section className="relative overflow-hidden bg-[#122452] text-white py-16 sm:py-24">
+          {/* Background Image Container */}
+          <div className="absolute inset-0 z-0">
+            <Image
+              src="/images/banner_achievements.webp"
+              alt="Academic Achievements and Awards Banner"
+              fill
+              priority
+              sizes="100vw"
+              className="object-cover object-right lg:object-center"
+            />
+            {/* Left-to-right institutional gradient overlay ensuring high contrast for text */}
+            <div className="absolute inset-0 bg-gradient-to-r from-[#122452] via-[#122452]/80 sm:via-[#122452]/65 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-b from-black/25 via-transparent to-black/35" />
+          </div>
+
+          <div className="relative z-10 max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-3xl space-y-4">
-              <span className="inline-flex items-center gap-2 px-3.5 py-1 rounded-[8px] bg-white/10 border border-white/15 text-slate-200 text-xs font-semibold capitalize tracking-wide">
-                Hall of Merit & Success
+              <span className="inline-flex items-center gap-2 px-3.5 py-1 rounded-[8px] bg-white/10 backdrop-blur-md border border-white/20 text-slate-100 text-xs font-semibold capitalize tracking-wide shadow-xs">
+                Hall of Merit &amp; Success
               </span>
-              <h1 className="text-3xl sm:text-5xl font-serif font-bold text-white leading-tight">
+              <h1 className="text-3xl sm:text-5xl font-serif font-bold text-white leading-tight drop-shadow-md">
                 Every milestone tells a story
               </h1>
-              <p className="text-slate-200 text-sm sm:text-base leading-relaxed">
-                Moments of recognition, disciplined effort, and learning excellence at Mother Glory Coaching & Tutorial Centre. Explore our verified student achievements.
+              <p className="text-slate-100 text-sm sm:text-base leading-relaxed drop-shadow-sm max-w-2xl">
+                Moments of recognition, disciplined effort, and learning excellence at Mother Glory Coaching &amp; Tutorial Centre. Explore our verified student achievements.
               </p>
             </div>
           </div>
@@ -57,4 +73,3 @@ export default async function AchievementsPage() {
     </div>
   );
 }
-

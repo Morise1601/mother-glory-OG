@@ -35,6 +35,7 @@ export default function AdminBannersPage() {
   const [isSaving, setIsSaving] = useState(false);
   const [deleteTarget, setDeleteTarget] = useState<{ id: string; title: string } | null>(null);
   const [isDeleting, setIsDeleting] = useState(false);
+  const [isAdding, setIsAdding] = useState(false);
 
   // 16:9 Image Cropper States
   const [cropperOpen, setCropperOpen] = useState(false);
@@ -184,7 +185,8 @@ export default function AdminBannersPage() {
 
   // Add new banner functionality
   const handleAddBanner = async () => {
-    if (!loaded) return;
+    if (!loaded || isAdding) return;
+    setIsAdding(true);
     setErrorMessage(null);
     const newSortOrder = banners.length + 1;
     const tempId = `banner-${Date.now()}`;
@@ -222,6 +224,8 @@ export default function AdminBannersPage() {
       setTimeout(() => setSavedSuccess(null), 3000);
     } catch (error) {
       setErrorMessage(error instanceof Error ? error.message : "Could not create banner.");
+    } finally {
+      setIsAdding(false);
     }
   };
 
@@ -263,11 +267,15 @@ export default function AdminBannersPage() {
           <button
             type="button"
             onClick={handleAddBanner}
-            disabled={!loaded}
-            className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-white hover:bg-slate-100 text-[#122452] border border-[#DFE3EA] text-xs sm:text-sm font-semibold shadow-xs transition-colors cursor-pointer"
+            disabled={!loaded || isAdding}
+            className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-white hover:bg-slate-100 text-[#122452] border border-[#DFE3EA] text-xs sm:text-sm font-semibold shadow-xs transition-colors cursor-pointer disabled:opacity-50"
           >
-            <PlusCircle className="w-4 h-4 text-[#B68A35]" />
-            <span>Add Slide</span>
+            {isAdding ? (
+              <Loader2 className="w-4 h-4 animate-spin text-[#B68A35]" />
+            ) : (
+              <PlusCircle className="w-4 h-4 text-[#B68A35]" />
+            )}
+            <span>{isAdding ? "Adding Slide..." : "Add Slide"}</span>
           </button>
           <button
             type="button"
@@ -311,10 +319,15 @@ export default function AdminBannersPage() {
             <button
               type="button"
               onClick={handleAddBanner}
-              className="text-xs font-semibold text-[#B68A35] hover:text-[#9c7328] flex items-center gap-1 transition-colors"
+              disabled={isAdding}
+              className="text-xs font-semibold text-[#B68A35] hover:text-[#9c7328] flex items-center gap-1 transition-colors disabled:opacity-50 cursor-pointer"
             >
-              <PlusCircle className="w-3.5 h-3.5" />
-              <span>Add</span>
+              {isAdding ? (
+                <Loader2 className="w-3.5 h-3.5 animate-spin" />
+              ) : (
+                <PlusCircle className="w-3.5 h-3.5" />
+              )}
+              <span>{isAdding ? "Adding..." : "Add"}</span>
             </button>
           </div>
 
@@ -329,9 +342,11 @@ export default function AdminBannersPage() {
               <button
                 type="button"
                 onClick={handleAddBanner}
-                className="px-4 py-2 rounded-xl bg-[#B68A35] text-white text-xs font-semibold shadow-xs hover:bg-[#9c7328] transition-colors"
+                disabled={isAdding}
+                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-[#B68A35] text-white text-xs font-semibold shadow-xs hover:bg-[#9c7328] transition-colors disabled:opacity-50 cursor-pointer"
               >
-                Add First Banner Slide
+                {isAdding ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : null}
+                <span>{isAdding ? "Adding Slide..." : "Add First Banner Slide"}</span>
               </button>
             </div>
           ) : (
@@ -439,9 +454,11 @@ export default function AdminBannersPage() {
               <button
                 type="button"
                 onClick={handleAddBanner}
-                className="px-4 py-2 rounded-xl bg-[#B68A35] text-white text-xs font-semibold shadow-xs hover:bg-[#9c7328] transition-colors"
+                disabled={isAdding}
+                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-[#B68A35] text-white text-xs font-semibold shadow-xs hover:bg-[#9c7328] transition-colors disabled:opacity-50 cursor-pointer"
               >
-                Add New Slide
+                {isAdding ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : null}
+                <span>{isAdding ? "Adding Slide..." : "Add New Slide"}</span>
               </button>
             </div>
           ) : (

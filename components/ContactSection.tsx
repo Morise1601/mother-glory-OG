@@ -10,14 +10,14 @@ export default function ContactSection() {
     {
       id: "puducherry" as const,
       name: "Puducherry Main Campus",
-      address: "11, 1st Cross, Subaiya Nagar, Sanjay Gandhi Nagar, Pudupalaiyam, Puducherry, 605001",
+      address: "11, 1st Cross, Subaiya Nagar, Sanjay Gandhi Nagar, Pudupalaiyam, Puducherry, 605013",
       phone: "+91 98428 23195",
       altPhone: "+91 98944 23195",
       email: "admissions@motherglory.edu",
       embedUrl:
-        "https://maps.google.com/maps?width=100%25&height=100%25&hl=en&q=Mother+Glory%2C+11%2C+1st+Cross%2C+Subaiya+Nagar%2C+Sanjay+Gandhi+Nagar%2C+Pudupalaiyam%2C+Puducherry+605001&t=&z=16&ie=UTF8&iwloc=B&output=embed",
+        "https://maps.google.com/maps?width=100%25&height=100%25&hl=en&q=Mother+Glory%2C+11%2C+1st+Cross%2C+Subaiya+Nagar%2C+Sanjay+Gandhi+Nagar%2C+Pudupalaiyam%2C+Puducherry+605013&t=&z=16&ie=UTF8&iwloc=B&output=embed",
       mapsSearchUrl:
-        "https://www.google.com/maps/search/?api=1&query=Mother+Glory,+11,+1st+Cross,+Subaiya+Nagar,+Sanjay+Gandhi+Nagar,+Pudupalaiyam,+Puducherry,+605001",
+        "https://www.google.com/maps/search/?api=1&query=Mother+Glory,+11,+1st+Cross,+Subaiya+Nagar,+Sanjay+Gandhi+Nagar,+Pudupalaiyam,+Puducherry,+605013",
     },
     {
       id: "karaikal" as const,

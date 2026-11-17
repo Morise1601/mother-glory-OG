@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import Header from "@/components/public/Header";
@@ -168,7 +169,21 @@ export default async function ProgramDetailPage({
 
               {/* Sidebar Quick Card (4 cols) */}
               <div className="lg:col-span-4 space-y-6 sticky top-28">
-                <div className="bg-[#FAF8F3] rounded-2xl border border-[#DFE3EA] p-6 shadow-xs space-y-5">
+                <div className="bg-[#FAF8F3] rounded-[8px] border border-[#DFE3EA] overflow-hidden p-6 shadow-xs space-y-5">
+                  {program.imageUrl && (
+                    <div className="relative aspect-[16/9] w-[calc(100%+3rem)] -mt-6 -mx-6 mb-5 overflow-hidden bg-slate-900 border-b border-[#DFE3EA]">
+                      <Image
+                        src={program.imageUrl}
+                        alt={program.title}
+                        fill
+                        unoptimized={program.imageUrl.startsWith("https://")}
+                        sizes="380px"
+                        className="object-cover"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+                    </div>
+                  )}
+
                   <h3 className="font-serif font-bold text-lg text-[#122452]">
                     Quick Details
                   </h3>
@@ -205,7 +220,7 @@ export default async function ProgramDetailPage({
 
                   <Link
                     href={`/contact?program=${encodeURIComponent(program.title)}`}
-                    className="w-full py-3 px-4 rounded-xl bg-[#B68A35] hover:bg-[#9c7328] text-white font-semibold text-xs sm:text-sm flex items-center justify-center gap-2 shadow-xs transition-colors"
+                    className="w-full py-3 px-4 rounded-[8px] bg-[#B68A35] hover:bg-[#9c7328] text-white font-semibold text-xs sm:text-sm flex items-center justify-center gap-2 shadow-xs transition-colors"
                   >
                     <span>Apply for Admission</span>
                     <ArrowRight className="w-4 h-4" />

@@ -75,29 +75,44 @@ export default async function AboutPage() {
       <Header announcement={settings.showAnnouncement ? settings.announcementNotice : undefined} />
 
       <main className="flex-grow">
-        {/* Hero Section */}
-        <section className="bg-gradient-to-r from-[#122452] via-[#122452] to-[#1a3370] text-white py-14 sm:py-20">
-          <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Hero Section with Uploaded Medical Science & Biology Background */}
+        <section className="relative overflow-hidden bg-[#122452] text-white py-16 sm:py-24">
+          {/* Background Image Container */}
+          <div className="absolute inset-0 z-0">
+            <Image
+              src="/images/banner_about.webp"
+              alt="Mother Glory Medical Science and NEET Preparation Banner"
+              fill
+              priority
+              sizes="100vw"
+              className="object-cover object-right lg:object-center"
+            />
+            {/* Left-to-right institutional gradient overlay for text readability */}
+            <div className="absolute inset-0 bg-gradient-to-r from-[#122452] via-[#122452]/80 sm:via-[#122452]/65 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-b from-black/25 via-transparent to-black/35" />
+          </div>
+
+          <div className="relative z-10 max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-3xl space-y-4">
-              <span className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/10 border border-white/15 text-slate-200 text-xs font-semibold uppercase tracking-wider">
+              <span className="inline-flex items-center gap-2 px-3.5 py-1 rounded-[8px] bg-white/10 backdrop-blur-md border border-white/20 text-slate-100 text-xs font-semibold uppercase tracking-wider shadow-xs">
                 OUR INSTITUTIONAL STORY
               </span>
-              <h1 className="text-3xl sm:text-5xl font-serif font-bold text-white leading-tight">
+              <h1 className="text-3xl sm:text-5xl font-serif font-bold text-white leading-tight drop-shadow-md">
                 A purpose that goes beyond the classroom
               </h1>
-              <p className="text-slate-200 text-sm sm:text-base leading-relaxed">
-                At Mother Glory Coaching & Tutorial Centre, we guide aspiring medical students with clarity, discipline, and care — building strong conceptual foundations for a brighter tomorrow.
+              <p className="text-slate-100 text-sm sm:text-base leading-relaxed drop-shadow-sm max-w-2xl">
+                At Mother Glory Coaching &amp; Tutorial Centre, we guide aspiring medical students with clarity, discipline, and care — building strong conceptual foundations for a brighter tomorrow.
               </p>
               <div className="pt-2 flex flex-wrap gap-3">
                 <Link
                   href="/programs"
-                  className="px-5 py-2.5 rounded-lg bg-[#B68A35] hover:bg-[#9c7328] text-white text-xs sm:text-sm font-semibold transition-colors"
+                  className="px-5 py-2.5 rounded-[8px] bg-[#B68A35] hover:bg-[#9c7328] text-white text-xs sm:text-sm font-semibold transition-colors shadow-xs"
                 >
                   Explore Programs
                 </Link>
                 <Link
                   href="/contact"
-                  className="px-5 py-2.5 rounded-lg bg-white/10 hover:bg-white/20 text-white border border-white/20 text-xs sm:text-sm font-semibold transition-colors"
+                  className="px-5 py-2.5 rounded-[8px] bg-white/10 hover:bg-white/20 text-white border border-white/20 text-xs sm:text-sm font-semibold transition-colors backdrop-blur-xs"
                 >
                   Contact Admissions
                 </Link>
