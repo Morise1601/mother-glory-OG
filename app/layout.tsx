@@ -14,27 +14,30 @@ export const viewport: Viewport = {
 };
 
 const baseMetadata: Metadata = {
-  title: "Mother Glory Coaching & Tutorial Centre | NEET Coaching in Karaikal & Puducherry",
+  title: "Mother Glory Coaching & Tutorial Centre | Best NEET Coaching in Puducherry & Karaikal",
   description:
-    "Best NEET Coaching in Karaikal & Puducherry | Mother Glory Coaching & Tutorial Centre",
+  "Best NEET Coaching in Puducherry & Karaikal. Over a decade and a half of medical entrance excellence, intensive repeaters batch, pre-medical foundation courses, and expert faculty.",
   keywords: [
     "Mother Glory Coaching & Tutorial Centre",
+    "Mother Glory NEET Academy",
     "Mother Glory",
-    "Mother Glory NEET Coaching center",
-    "Best NEET Coaching in Karaikal",
     "Best NEET Coaching in Puducherry",
-    "NEET Academy Karaikal",
+    "Best NEET Coaching in Karaikal",
     "NEET Academy Pondicherry",
+    "NEET Academy Karaikal",
     "Medical Entrance Coaching Puducherry",
-    "JIPMER Entrance Coaching Karaikal",
-    "AIIMS Coaching Puducherry",
-    "Top NEET Repeaters Batch Karaikal",
+    "NEET Repeater Batch Puducherry",
+    "NEET Dropper Batch Karaikal",
+    "JIPMER Entrance Coaching",
+    "AIIMS NEET Coaching Puducherry",
     "NEET Test Series Puducherry",
+    "NEET Crash Course Puducherry",
+    "Top Medical Coaching Center Near Me",
   ],
-  authors: [{ name: "Mother Glory Coaching & Tutorial Centre" }],
+  authors: [{ name: "Mother Glory Coaching & Tutorial Centre", url: "https://www.motherglory.com" }],
   creator: "Mother Glory Coaching & Tutorial Centre",
   publisher: "Mother Glory Coaching & Tutorial Centre",
-  metadataBase: new URL("https://motherglory.edu"),
+  metadataBase: new URL("https://www.motherglory.com"),
   manifest: "/site.webmanifest",
   icons: {
     icon: [
@@ -64,10 +67,10 @@ const baseMetadata: Metadata = {
     canonical: "/",
   },
   openGraph: {
-    title: "Mother Glory Coaching & Tutorial Centre | NEET Coaching Centre",
+    title: "Mother Glory Coaching & Tutorial Centre | Best NEET Coaching in Puducherry & Karaikal",
     description:
-      "Best NEET Coaching in Karaikal & Puducherry | Mother Glory Coaching & Tutorial Centre",
-    url: "https://motherglory.edu",
+    "Premier NEET medical entrance coaching institute in Puducherry and Karaikal. Structured repeaters batch, pre-medical foundation, and proven results.",
+    url: "https://www.motherglory.com",
     siteName: "Mother Glory Coaching & Tutorial Centre",
     images: [
       {
@@ -77,15 +80,15 @@ const baseMetadata: Metadata = {
         alt: "Mother Glory Coaching & Tutorial Centre Interactive Campus Classroom",
       },
     ],
-    locale: "en_US",
+    locale: "en_IN",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
     title: "Mother Glory Coaching & Tutorial Centre | NEET Coaching Centre",
     description:
-      "Best NEET Coaching in Karaikal & Puducherry | Mother Glory Coaching & Tutorial Centre",
-    images: ["/images/gallery/gallery-1.webp"],
+    "Best NEET Coaching in Puducherry & Karaikal | Mother Glory Coaching & Tutorial Centre",
+    images: ["/images/hero_banner_mg.webp"],
   },
   robots: {
     index: true,
@@ -116,13 +119,91 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const [settings, campuses] = await Promise.all([getSiteSettings(), getCampuses()]);
+  const siteUrl = (settings.canonicalOrigin || "https://www.motherglory.com").replace(/\/$/, "");
+
   const jsonLd = {
-    "@context": "https://schema.org", "@type": "EducationalOrganization",
-    "@id": settings.canonicalOrigin + "/#organization", name: settings.institutionName,
-    url: settings.canonicalOrigin, logo: settings.canonicalOrigin + "/images/logo_mg.webp",
-    description: settings.seoDescription, telephone: settings.contactPhones?.[0] || '+91 98428 23195', email: settings.contactEmail,
-    address: campuses.map(campus => ({ "@type": "PostalAddress", streetAddress: campus.address,
-      addressLocality: campus.city, addressRegion: campus.state, postalCode: campus.postalCode, addressCountry: "IN" })),
+    "@context": "https://schema.org",
+    "@type": "EducationalOrganization",
+    "@id": `${siteUrl}/#organization`,
+    name: settings.institutionName,
+    alternateName: [
+      "Mother Glory NEET Academy",
+      "Mother Glory Coaching Center",
+      "Mother Glory Coaching & Tutorial Centre Karaikal",
+      "Mother Glory Coaching Centre Puducherry",
+      "MGCT Puducherry",
+      "MGCT Karaikal",
+    ],
+    url: siteUrl,
+    logo: {
+      "@type": "ImageObject",
+      url: `${siteUrl}/images/logo_mg.webp`,
+      caption: "Mother Glory Coaching & Tutorial Centre Seal",
+    },
+    image: `${siteUrl}/images/hero_banner_mg.webp`,
+    description: settings.seoDescription,
+    telephone: settings.contactPhones?.[0] || "+91 98428 23195",
+    email: settings.contactEmail,
+    sameAs: [
+      "https://www.facebook.com/mothergloryneetacademykaraikal",
+      "https://www.instagram.com/mother_glory_official?igsh=aTVuOWNueXNqd2h6",
+      "https://www.youtube.com/@mothergloryneetacademy",
+    ],
+    areaServed: [
+      { "@type": "City", name: "Puducherry" },
+      { "@type": "City", name: "Karaikal" },
+      { "@type": "State", name: "Tamil Nadu" },
+      { "@type": "Country", name: "India" },
+    ],
+    knowsAbout: [
+      "NEET UG Medical Entrance Preparation",
+      "NEET Repeaters & Dropper Coaching",
+      "Pre-Medical Foundation Courses for Class 9 and 10",
+      "Physics for Medical Entrance",
+      "Chemistry for NEET",
+      "Botany and Zoology NEET Syllabus",
+      "JIPMER Entrance Guidance",
+      "AIIMS Medical Entrance Preparation",
+    ],
+    address: campuses.map((campus) => ({
+      "@type": "PostalAddress",
+      streetAddress: campus.address,
+      addressLocality: campus.city,
+      addressRegion: campus.state,
+      postalCode: campus.postalCode,
+      addressCountry: "IN",
+    })),
+    subOrganization: campuses.map((campus) => {
+      const isPuducherry = campus.slug === "puducherry" || campus.city.toLowerCase().includes("puducherry");
+      return {
+        "@type": "LocalBusiness",
+        "@id": `${siteUrl}/#${campus.slug}-campus`,
+        name: `${settings.institutionName} - ${campus.name}`,
+        image: `${siteUrl}${campus.imageUrl || "/images/hero_banner_mg.webp"}`,
+        telephone: campus.phone,
+        email: campus.email || settings.contactEmail,
+        hasMap: campus.mapsUrl,
+        address: {
+          "@type": "PostalAddress",
+          streetAddress: campus.address,
+          addressLocality: campus.city,
+          addressRegion: campus.state,
+          postalCode: campus.postalCode,
+          addressCountry: "IN",
+        },
+        geo: {
+          "@type": "GeoCoordinates",
+          latitude: isPuducherry ? 11.931086 : 10.9254,
+          longitude: isPuducherry ? 79.809073 : 79.8329,
+        },
+        openingHoursSpecification: {
+          "@type": "OpeningHoursSpecification",
+          dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+          opens: "08:00",
+          closes: "17:00",
+        },
+      };
+    }),
   };
 
   return (

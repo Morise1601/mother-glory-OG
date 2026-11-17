@@ -21,10 +21,23 @@ import {
 
 export const metadata = {
   alternates: { canonical: "/programs" },
-  openGraph: { url: "/programs" },
-  title: "NEET Programs | Mother Glory Coaching & Tutorial Centre",
+  openGraph: {
+    url: "/programs",
+    title: "NEET Coaching Programs & Courses | Mother Glory Coaching Centre",
+    description:
+      "Explore comprehensive medical coaching: NEET UG (Class 11 & 12), full-time Repeaters / Dropper batch, and Pre-Medical Foundation (Class 9 & 10) in Puducherry & Karaikal.",
+    images: [{ url: "/images/banner_programs.webp", width: 1200, height: 630, alt: "NEET Programs Banner" }],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "NEET Coaching Programs | Mother Glory NEET Academy",
+    description: "Explore our NEET UG, Repeaters, and Foundation coaching programs in Puducherry & Karaikal.",
+    images: ["/images/banner_programs.webp"],
+  },
+  title: "NEET Coaching Programs & Courses | Mother Glory Coaching Centre",
   description:
-    "Explore our structured medical coaching programs: NEET UG (Class 11-12), Repeaters / Dropper batch, and Class 9-10 Pre-Medical Foundation.",
+  "Explore comprehensive medical coaching: NEET UG (Class 11 & 12), full-time Repeaters / Dropper batch, and Pre-Medical Foundation (Class 9 & 10) in Puducherry & Karaikal.",
 };
 
 export default async function ProgramsPage() {
@@ -32,6 +45,27 @@ export default async function ProgramsPage() {
     getPrograms(),
     getSiteSettings(),
   ]);
+
+  const coursesJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: "Mother Glory NEET Coaching Programs",
+    itemListElement: programs.map((p, idx) => ({
+      "@type": "ListItem",
+      position: idx + 1,
+      item: {
+        "@type": "Course",
+        name: p.title,
+        description: p.tagline,
+        url: `https://www.motherglory.com/programs/${p.slug}`,
+        provider: {
+          "@type": "EducationalOrganization",
+          name: settings.institutionName,
+          sameAs: "https://www.motherglory.com",
+        },
+      },
+    })),
+  };
 
   const highlights = [
     { title: "Complete NEET Syllabus Coverage", desc: "Line-by-line NCERT mapping and high-yield concepts." },
@@ -80,6 +114,10 @@ export default async function ProgramsPage() {
 
   return (
     <div className="min-h-screen flex flex-col bg-[#FAF8F3] text-[#172033]">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(coursesJsonLd).replace(/</g, "\\u003c") }}
+      />
       <Header announcement={settings.showAnnouncement ? settings.announcementNotice : undefined} />
 
       <main className="flex-grow">
@@ -179,23 +217,23 @@ export default async function ProgramsPage() {
                         </span>
                       )}
 
-                    <h3 className="text-xl font-serif font-bold text-[#122452]">
-                      {program.title}
-                    </h3>
+                      <h3 className="text-xl font-serif font-bold text-[#122452]">
+                        {program.title}
+                      </h3>
 
-                    <p className="text-xs sm:text-sm text-[#596579] leading-relaxed">
-                      {program.overview}
-                    </p>
+                      <p className="text-xs sm:text-sm text-[#596579] leading-relaxed">
+                        {program.overview}
+                      </p>
 
-                    <div className="pt-3 border-t border-[#DFE3EA] space-y-2 text-xs text-[#172033]">
-                      <p className="font-semibold text-[#122452]">Curriculum Highlights:</p>
-                      {program.curriculum.slice(0, 3).map((item, idx) => (
-                        <div key={idx} className="flex items-start gap-2">
-                          <CheckCircle2 className="w-3.5 h-3.5 text-[#B68A35] shrink-0 mt-0.5" />
-                          <span className="line-clamp-1">{item}</span>
-                        </div>
-                      ))}
-                    </div>
+                      <div className="pt-3 border-t border-[#DFE3EA] space-y-2 text-xs text-[#172033]">
+                        <p className="font-semibold text-[#122452]">Curriculum Highlights:</p>
+                        {program.curriculum.slice(0, 3).map((item, idx) => (
+                          <div key={idx} className="flex items-start gap-2">
+                            <CheckCircle2 className="w-3.5 h-3.5 text-[#B68A35] shrink-0 mt-0.5" />
+                            <span className="line-clamp-1">{item}</span>
+                          </div>
+                        ))}
+                      </div>
                     </div>
                   </div>
 

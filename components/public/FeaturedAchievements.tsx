@@ -65,7 +65,7 @@ export default function FeaturedAchievements({ achievements }: FeaturedAchieveme
                 <Trophy className="w-3.5 h-3.5" />
                 <span>Verified Hall of Excellence</span>
               </div>
-              <h2 className="text-3xl sm:text-5xl font-serif font-bold text-[#122452] tracking-tight">
+              <h2 className="text-3xl sm:text-4xl font-serif font-bold text-[#122452] tracking-tight">
                 Featured Achievements
               </h2>
               <p className="text-sm sm:text-base text-[#596579] mt-1 max-w-xl">
@@ -89,8 +89,8 @@ export default function FeaturedAchievements({ achievements }: FeaturedAchieveme
                   onClick={() => scrollByCard("left")}
                   disabled={!canScrollLeft}
                   className={`w-11 h-11 rounded-full border flex items-center justify-center transition-all cursor-pointer ${canScrollLeft
-                      ? "bg-[#FAF8F3] hover:bg-[#122452] hover:text-white border-[#DFE3EA] text-[#122452] shadow-xs"
-                      : "bg-slate-100 border-slate-200 text-slate-300 cursor-not-allowed"
+                    ? "bg-[#FAF8F3] hover:bg-[#122452] hover:text-white border-[#DFE3EA] text-[#122452] shadow-xs"
+                    : "bg-slate-100 border-slate-200 text-slate-300 cursor-not-allowed"
                     }`}
                   aria-label="Previous Achievement"
                 >
@@ -101,8 +101,8 @@ export default function FeaturedAchievements({ achievements }: FeaturedAchieveme
                   onClick={() => scrollByCard("right")}
                   disabled={!canScrollRight}
                   className={`w-11 h-11 rounded-full border flex items-center justify-center transition-all cursor-pointer ${canScrollRight
-                      ? "bg-[#FAF8F3] hover:bg-[#122452] hover:text-white border-[#DFE3EA] text-[#122452] shadow-xs"
-                      : "bg-slate-100 border-slate-200 text-slate-300 cursor-not-allowed"
+                    ? "bg-[#FAF8F3] hover:bg-[#122452] hover:text-white border-[#DFE3EA] text-[#122452] shadow-xs"
+                    : "bg-slate-100 border-slate-200 text-slate-300 cursor-not-allowed"
                     }`}
                   aria-label="Next Achievement"
                 >
@@ -174,8 +174,8 @@ export default function FeaturedAchievements({ achievements }: FeaturedAchieveme
               <span
                 key={idx}
                 className={`transition-all duration-300 rounded-full ${idx === activeIndex
-                    ? "w-6 h-2 bg-[#B68A35]"
-                    : "w-2 h-2 bg-[#DFE3EA]"
+                  ? "w-6 h-2 bg-[#B68A35]"
+                  : "w-2 h-2 bg-[#DFE3EA]"
                   }`}
               />
             ))}

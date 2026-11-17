@@ -19,7 +19,7 @@ export default function ProgramsSection({ programs, onOpenEnquiry }: ProgramsSec
               <Sparkles className="w-3.5 h-3.5 text-[#B68A35]" />
               <span>Structured Medical Entrance Preparation</span>
             </div>
-            <h2 className="text-3xl sm:text-5xl font-serif font-bold text-[#122452] tracking-tight">
+            <h2 className="text-3xl sm:text-4xl font-serif font-bold text-[#122452] tracking-tight">
               Programs Built for Ranks
             </h2>
             <p className="text-sm sm:text-base text-[#596579] max-w-xl">

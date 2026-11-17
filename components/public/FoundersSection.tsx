@@ -18,7 +18,7 @@ export default function FoundersSection({ founders, showFullBio = false }: Found
             <ShieldCheck className="w-4 h-4 text-[#B68A35]" />
             <span>Visionary Academic Leadership</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-[#122452] tracking-tight">
+          <h2 className="text-3xl sm:text-4xl font-serif font-bold text-[#122452] tracking-tight">
             Leadership Dedicated to Student Success
           </h2>
           <p className="text-xs sm:text-sm text-[#596579] max-w-2xl mx-auto leading-relaxed">

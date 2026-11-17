@@ -9,10 +9,23 @@ import { getSiteSettings } from "@/lib/data/settings";
 
 export const metadata = {
   alternates: { canonical: "/achievements" },
-  openGraph: { url: "/achievements" },
-  title: "Achievements & Results | Mother Glory NEET Academy",
+  openGraph: {
+    url: "/achievements",
+    title: "NEET Achievements & Results | Mother Glory NEET Academy",
+    description:
+      "Explore verified milestone records, NEET exam qualifiers, awards, and student recognition posters in Puducherry and Karaikal.",
+    images: [{ url: "/images/banner_achievements.webp", width: 1200, height: 630, alt: "Mother Glory Achievements Banner" }],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "NEET Achievements & Results | Mother Glory NEET Academy",
+    description: "Explore verified milestone records and NEET exam qualifiers from Mother Glory.",
+    images: ["/images/banner_achievements.webp"],
+  },
+  title: "NEET Achievements & Results | Mother Glory NEET Academy",
   description:
-    "Explore our verified milestone records, NEET exam qualifiers, awards, and student recognition posters in Puducherry and Karaikal.",
+  "Explore verified milestone records, NEET exam qualifiers, awards, and student recognition posters in Puducherry and Karaikal.",
 };
 
 export default async function AchievementsPage() {
@@ -21,8 +34,33 @@ export default async function AchievementsPage() {
     getSiteSettings(),
   ]);
 
+  const achievementsJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: "Mother Glory NEET Achievements & Verified Qualifiers",
+    description: "Verified institutional milestone records, student recognition posters, and medical college admissions.",
+    mainEntity: {
+      "@type": "ItemList",
+      itemListElement: achievements.slice(0, 30).map((a, idx) => ({
+        "@type": "ListItem",
+        position: idx + 1,
+        item: {
+          "@type": "ImageObject",
+          name: a.title,
+          caption: a.caption || a.summary,
+          contentUrl: `https://www.motherglory.com${a.imageUrl}`,
+          url: `https://www.motherglory.com/achievements/${a.slug}`,
+        },
+      })),
+    },
+  };
+
   return (
     <div className="min-h-screen flex flex-col bg-[#FAF8F3] text-[#172033]">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(achievementsJsonLd).replace(/</g, "\\u003c") }}
+      />
       <Header announcement={settings.showAnnouncement ? settings.announcementNotice : undefined} />
 
       <main className="flex-grow">
